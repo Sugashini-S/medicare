@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] bg-primary flex items-center pt-20 overflow-hidden">
+      <section className="relative min-h-[90vh] bg-primary flex items-center pt-20 pb-12 md:pb-0 overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[120px] animate-pulse" />
@@ -110,7 +110,7 @@ const Home = () => {
         </div>
 
         {/* Stats Bar */}
-        <div className="absolute bottom-0 left-0 right-0 bg-white/5 backdrop-blur-xl border-t border-white/10 py-8 z-20">
+        <div className="relative mt-12 md:absolute md:bottom-0 left-0 right-0 bg-white/5 backdrop-blur-xl border-t border-white/10 py-8 z-20">
           <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
             <StatItem to={50000} suffix="+" label="Satisfied Patients" />
             <StatItem to={200} suffix="+" label="Expert Doctors" />
@@ -123,7 +123,7 @@ const Home = () => {
       {/* Quick Actions */}
       <section className="py-24 px-6 bg-surface">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             <QuickActionCard 
               icon={<ShoppingBag className="text-accent" />}
               title="Buy Medicines"
