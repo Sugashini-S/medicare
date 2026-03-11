@@ -5,7 +5,6 @@ import {
   Phone, Mail, Clock, Send, Globe,
   ArrowUpRight
 } from 'lucide-react';
-import { specialties } from '../data/mockData';
 import { cn } from '../utils/cn';
 
 const About = () => {
