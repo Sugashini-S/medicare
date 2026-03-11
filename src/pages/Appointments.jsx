@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   User, Calendar as CalendarIcon, Clock, CheckCircle2, 
@@ -10,6 +11,7 @@ import { cn } from '../utils/cn';
 import { Link } from 'react-router-dom';
 
 const Appointments = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [bookingData, setBookingData] = useState({
     doctor: null,
@@ -322,19 +324,19 @@ const Appointments = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                   <Link
-                      to="/dashboard"
+                   <button
+                      onClick={() => navigate('/dashboard')}
                       className="px-8 py-4 bg-primary text-white rounded-2xl font-bold flex items-center gap-2 hover:bg-primary-light transition-all shadow-xl shadow-primary/20"
                    >
                       <LayoutDashboard size={20} />
                       Go to Dashboard
-                   </Link>
-                   <Link
-                      to="/"
+                   </button>
+                   <button
+                      onClick={() => navigate('/')}
                       className="px-8 py-4 bg-white text-primary border-2 border-primary/10 rounded-2xl font-bold hover:bg-surface transition-all"
                    >
                       Return Home
-                   </Link>
+                   </button>
                 </div>
 
                 {/* Decorations */}

@@ -111,7 +111,7 @@ const Home = () => {
       </section>
 
       {/* Stats Bar - Separate Section */}
-      <section className="bg-primary/5 py-12 md:py-20">
+      <section className="bg-primary py-12 md:py-20">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             <StatItem to={50000} suffix="+" label="Satisfied Patients" />
