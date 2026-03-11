@@ -38,7 +38,7 @@ const Navbar = () => {
       <nav
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4',
-          isScrolled ? 'glass shadow-lg py-3' : 'bg-transparent'
+          isScrolled || isMobileMenuOpen ? 'glass shadow-lg py-3' : 'bg-transparent'
         )}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -243,7 +243,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 top-[72px] bg-white z-40 p-6 md:hidden flex flex-col"
+            className="fixed inset-0 top-[64px] bg-white z-40 p-6 md:hidden flex flex-col overflow-y-auto"
           >
             <div className="flex flex-col gap-6">
               {navLinks.map((link) => (

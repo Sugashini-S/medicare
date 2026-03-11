@@ -38,11 +38,11 @@ const Home = () => {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-accent font-bold text-sm tracking-wide"
             >
-              <Heart size={16} fill="currentColor" />
-              Serving Tamil Nadu for over 25 Years
+              <Heart size={16} fill="currentColor" className="shrink-0" />
+              <span className="whitespace-nowrap sm:whitespace-normal">Serving Tamil Nadu for over 25 Years</span>
             </motion.div>
             
-            <h1 className="text-5xl md:text-7xl font-black leading-[1.1] tracking-tighter text-white drop-shadow-sm">
+            <h1 className="text-4xl md:text-7xl font-black leading-[1.1] tracking-tighter text-white drop-shadow-sm">
               Your Health, <br />
               <span className="text-accent">In Trusted Hands.</span>
             </h1>
@@ -52,17 +52,17 @@ const Home = () => {
               Book appointments, buy medicines, and manage your health records all in one place.
             </p>
 
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link
                 to="/appointments"
-                className="px-8 py-4 bg-accent hover:bg-white hover:text-primary text-primary font-extrabold rounded-2xl shadow-xl shadow-accent/20 transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 group"
+                className="w-full sm:w-auto px-8 py-4 bg-accent hover:bg-white hover:text-primary text-primary font-extrabold rounded-2xl shadow-xl shadow-accent/20 transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 group"
               >
                 Book Appointment
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 to="/doctors"
-                className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-extrabold rounded-2xl border border-white/10 backdrop-blur-md transition-all duration-300"
+                className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-extrabold rounded-2xl border border-white/10 backdrop-blur-md transition-all duration-300 flex items-center justify-center"
               >
                 Find Doctors
               </Link>
@@ -92,11 +92,11 @@ const Home = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
             </div>
             
-            {/* Stats Badge */}
+            {/* National Badge - Desktop Only */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute -bottom-10 -left-10 bg-white p-6 rounded-[32px] shadow-2xl z-20 flex items-center gap-4 border border-gray-100"
+              className="absolute -bottom-10 -left-10 bg-white p-6 rounded-[32px] shadow-2xl z-20 hidden md:flex items-center gap-4 border border-gray-100"
             >
               <div className="w-12 h-12 bg-success/20 text-success rounded-full flex items-center justify-center">
                 <Star size={24} fill="currentColor" />
@@ -108,10 +108,12 @@ const Home = () => {
             </motion.div>
           </motion.div>
         </div>
+      </section>
 
-        {/* Stats Bar */}
-        <div className="relative mt-12 md:absolute md:bottom-0 left-0 right-0 bg-white/5 backdrop-blur-xl border-t border-white/10 py-8 z-20">
-          <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+      {/* Stats Bar - Separate Section */}
+      <section className="bg-primary/5 py-12 md:py-20">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             <StatItem to={50000} suffix="+" label="Satisfied Patients" />
             <StatItem to={200} suffix="+" label="Expert Doctors" />
             <StatItem to={25} suffix="+" label="Specialties" />
@@ -165,7 +167,7 @@ const Home = () => {
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-primary tracking-tight leading-none">
+              <h2 className="text-2xl md:text-4xl font-extrabold text-primary tracking-tight leading-none">
                 Browse by Specialty
               </h2>
               <p className="text-lg text-text-muted max-w-xl">
@@ -191,7 +193,7 @@ const Home = () => {
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-primary tracking-tight leading-none">
+              <h2 className="text-2xl md:text-4xl font-extrabold text-primary tracking-tight leading-none">
                 Featured Doctors
               </h2>
               <p className="text-lg text-text-muted max-w-xl">
@@ -200,7 +202,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 relative">
             {doctors.slice(0, 3).map((doc) => (
               <div key={doc.id} className={cn("relative", !isAuthenticated && "blur-[8px] opacity-40 pointer-events-none transition-all duration-700")}>
                 <DoctorCardSummary doctor={doc} />
@@ -255,7 +257,7 @@ const Home = () => {
                 >
                   Special Offer
                 </motion.span>
-                <h2 className="text-4xl md:text-6xl font-extrabold leading-tight mb-8">
+                <h2 className="text-2xl md:text-6xl font-extrabold leading-tight mb-8">
                   Full Body Checkup <br />
                   Starting from <span className="text-primary tracking-tighter">₹999</span>
                 </h2>
@@ -288,7 +290,7 @@ const Home = () => {
       <section className="py-24 px-6 bg-white">
         <div className="container mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-primary tracking-tight">What Our Patients Say</h2>
+            <h2 className="text-2xl md:text-4xl font-extrabold text-primary tracking-tight">What Our Patients Say</h2>
             <p className="text-lg text-text-muted max-w-2xl mx-auto">
               Real stories from people who trusted MediCare for their healthcare journey.
             </p>
@@ -306,7 +308,7 @@ const Home = () => {
         <div className="container mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-white space-y-8">
-               <h2 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
+               <h2 className="text-2xl md:text-5xl font-extrabold leading-tight tracking-tight">
                  Manage Your Health <br />
                  On The Go with <span className="text-accent underline decoration-white/20 underline-offset-8">MediCare App.</span>
                </h2>

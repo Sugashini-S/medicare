@@ -21,7 +21,7 @@ const Dashboard = () => {
             <motion.h1 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-4xl font-extrabold text-primary tracking-tight"
+              className="text-3xl md:text-4xl font-extrabold text-primary tracking-tight"
             >
               Hello, <span className="text-accent underline decoration-primary/5 decoration-8 underline-offset-8">{user?.name || 'User'}</span>!
             </motion.h1>

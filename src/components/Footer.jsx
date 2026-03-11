@@ -42,7 +42,7 @@ const Footer = () => {
     <footer className="bg-[#0a1628] text-white pt-20 pb-10 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Top Section: Links Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 mb-20">
           {footerLinks.map((section) => (
             <div key={section.title}>
               <h3 className="font-bold text-accent mb-6 uppercase tracking-wider text-sm">
@@ -134,7 +134,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section: Copyright & Accreditations */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-8 py-8">
           <p className="text-gray-500 text-xs">
             © {new Date().getFullYear()} MediCare Hospital. All Rights Reserved.
           </p>

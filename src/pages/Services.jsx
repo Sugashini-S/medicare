@@ -43,7 +43,7 @@ const Services = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
           {services.map((service, idx) => (
             <motion.div
               key={service.id}
@@ -80,7 +80,7 @@ const Services = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {healthPackages.map((pkg, idx) => (
               <motion.div
                 key={pkg.id}

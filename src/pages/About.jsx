@@ -28,7 +28,7 @@ const About = () => {
             <div className="inline-flex items-center gap-2 px-4 py-1 bg-accent/10 rounded-full text-accent font-bold text-xs uppercase tracking-widest">
               Our Journey
             </div>
-            <h1 className="text-5xl md:text-6xl font-extrabold text-primary tracking-tight leading-tight">
+            <h1 className="text-3xl md:text-5xl font-extrabold text-primary tracking-tight leading-tight">
               A Legacy of <span className="text-accent underline decoration-primary/10 decoration-8 underline-offset-8">Compassionate</span> Healthcare.
             </h1>
             <p className="text-text-muted text-lg leading-relaxed">
@@ -64,7 +64,7 @@ const About = () => {
         </div>
 
         {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-8 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-32">
           <Card 
             icon={<Target className="text-accent" />}
             title="Our Mission"
@@ -80,7 +80,7 @@ const About = () => {
         {/* Locations */}
         <div className="mb-32">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl font-extrabold text-primary tracking-tight">Our Presence in Tamil Nadu</h2>
+            <h2 className="text-2xl md:text-4xl font-extrabold text-primary tracking-tight">Our Presence in Tamil Nadu</h2>
             <p className="text-text-muted max-w-xl mx-auto">We are present in major cities to bring healthcare closer to you.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -110,7 +110,7 @@ const About = () => {
         {/* Contact Form Section */}
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5 space-y-8">
-            <h2 className="text-4xl font-extrabold text-primary tracking-tight">Get in Touch</h2>
+            <h2 className="text-2xl md:text-4xl font-extrabold text-primary tracking-tight">Get in Touch</h2>
             <p className="text-text-muted text-lg">
               Have questions or need assistance? Our team is here to help you 24/7.
             </p>
