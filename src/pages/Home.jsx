@@ -25,7 +25,7 @@ const Home = () => {
           <div className="absolute inset-0 bg-mesh-gradient opacity-60" />
         </div>
 
-        <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -81,13 +81,13 @@ const Home = () => {
             initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 1 }}
-            className="relative hidden lg:block"
+            className="relative w-full"
           >
-            <div className="relative z-10 rounded-[60px] overflow-hidden border-8 border-white/10 shadow-2xl">
+            <div className="relative z-10 rounded-2xl md:rounded-[60px] overflow-hidden border-4 md:border-8 border-white/10 shadow-2xl">
               <img 
                 src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800&h=1000" 
                 alt="Hospital" 
-                className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full max-h-[300px] md:max-h-none object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
             </div>
