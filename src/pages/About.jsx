@@ -64,10 +64,11 @@ const About = () => {
           >
             <div className="rounded-[40px] overflow-hidden shadow-2xl border-4 border-white">
               <img 
-                src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&q=80" 
-                alt="Healthcare professionals team" 
+                src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=600&q=80" 
+                alt="Doctor smiling with patient at home" 
                 className="w-full h-80 object-cover"
                 onError={(e) => { e.target.style.display = 'none' }}
+                loading="lazy"
               />
             </div>
             <motion.div 
@@ -111,10 +112,11 @@ const About = () => {
           <div className="relative z-10">
             <div className="mb-12">
               <img 
-                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80" 
-                alt="Spondon Office" 
+                src="https://images.unsplash.com/photo-1559839914-17aae19cec71?w=600&q=80" 
+                alt="Healthcare team group photo" 
                 className="w-full h-64 object-cover rounded-2xl shadow-md mb-8"
                 onError={(e) => { e.target.style.display = 'none' }}
+                loading="lazy"
               />
               <h2 className="text-3xl font-bold text-center text-text-dark font-display">Our Geographical Presence</h2>
             </div>

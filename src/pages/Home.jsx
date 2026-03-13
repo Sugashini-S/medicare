@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ArrowRight, Check, X, Clock, 
-  MapPin, Stethoscope, Video, Activity, 
+import {
+  ArrowRight, Check, X, Clock,
+  MapPin, Stethoscope, Video, Activity,
   Beaker, Baby, ShoppingBag, ShieldCheck
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -32,14 +32,14 @@ const Home = () => {
               <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
               🏥 Doorstep Healthcare — Nagaon, Assam
             </div>
-            
+
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight font-display">
               Healthcare That <br />
               Comes <span className="text-primary italic">To You</span>
             </h1>
-            
+
             <p className="text-lg text-text-body max-w-xl">
-              We are a team of professional doorstep healthcare providers in Nagaon, Assam. 
+              We are a team of professional doorstep healthcare providers in Nagaon, Assam.
               Our services include preventive, curative and supportive care in the primary healthcare space.
             </p>
 
@@ -72,10 +72,11 @@ const Home = () => {
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
               <img 
-                src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=600&q=80" 
-                alt="Home healthcare" 
+                src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80" 
+                alt="Nurse helping elderly patient at home" 
                 className="w-full h-full object-cover rounded-2xl"
                 onError={(e) => { e.target.style.display='none' }}
+                loading="lazy"
               />
             </div>
             {/* Soft teal gradient background */}
@@ -95,13 +96,13 @@ const Home = () => {
             className="fixed bottom-8 left-4 right-4 md:left-auto md:right-8 z-50 max-w-md"
           >
             <div className="bg-teal-gradient p-6 rounded-2xl text-white shadow-2xl relative border-2 border-white/20">
-              <button 
+              <button
                 onClick={() => setShowPromo(false)}
                 className="absolute top-4 right-4 hover:bg-white/10 p-1 rounded-full transition-colors"
               >
                 <X size={20} />
               </button>
-              
+
               <div className="flex items-start gap-4 mb-4">
                 <div className="bg-white/20 p-2 rounded-xl">
                   <ShieldCheck size={24} />
@@ -111,7 +112,7 @@ const Home = () => {
                   <p className="text-white/80 text-sm">₹100 for 1 year registration</p>
                 </div>
               </div>
-              
+
               <ul className="space-y-2 mb-6 text-sm text-white/90">
                 <li className="flex items-center gap-2">
                   <Check size={14} className="text-secondary" /> Covers up to 6 family members
@@ -120,9 +121,9 @@ const Home = () => {
                   <Check size={14} className="text-secondary" /> Renewal charges: ₹75/year
                 </li>
               </ul>
-              
-              <Link 
-                to={!isAuthenticated ? "/register" : "/family-plan"} 
+
+              <Link
+                to={!isAuthenticated ? "/register" : "/family-plan"}
                 className="block w-full text-center bg-secondary hover:bg-opacity-90 text-white font-bold py-3 rounded-xl transition-all shadow-lg animate-pulse"
               >
                 Register Now
@@ -143,42 +144,42 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ServiceCard 
+            <ServiceCard
               index={0}
               icon={<Stethoscope className="text-primary" size={32} />}
               title="Doctor Visit at Home"
               description="Our doctors come to your home for consultation and treatment"
               image="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"
             />
-            <ServiceCard 
+            <ServiceCard
               index={1}
               icon={<Video className="text-primary" size={32} />}
               title="Telemedicine Consultation"
               description="Video consultation with doctors from the comfort of your home"
-              image="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=80"
+              image="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80"
             />
-            <ServiceCard 
+            <ServiceCard
               index={2}
               icon={<Activity className="text-primary" size={32} />}
               title="Nursing Care"
               description="24×7 trained nursing services at your doorstep"
-              image="https://images.unsplash.com/photo-1584515933487-779824d29309?w=400&q=80"
+              image="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&q=80"
             />
-            <ServiceCard 
+            <ServiceCard
               index={3}
               icon={<Beaker className="text-primary" size={32} />}
               title="Home Lab Collection"
               description="Lab technicians collect samples at home, reports delivered to you"
               image="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&q=80"
             />
-            <ServiceCard 
+            <ServiceCard
               index={4}
               icon={<Baby className="text-primary" size={32} />}
               title="Mother & Child Care"
               description="Comprehensive postpartum and newborn care at home"
-              image="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=400&q=80"
+              image="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=400&q=80"
             />
-            <ServiceCard 
+            <ServiceCard
               index={5}
               icon={<ShoppingBag className="text-primary" size={32} />}
               title="Doorstep Pharmacy"
@@ -193,7 +194,7 @@ const Home = () => {
             </Link>
 
             {/* Family Plan Banner */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -219,28 +220,28 @@ const Home = () => {
       <section className="py-16 md:py-24 px-4 md:px-8 lg:px-16 bg-white">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-16 font-display">How It Works</h2>
-          
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              <StepItem 
+              <StepItem
                 index={0}
                 number="1"
                 title="Register"
                 description="Fill out the form with your name, address, email and mobile number"
               />
-              <StepItem 
+              <StepItem
                 index={1}
                 number="2"
                 title="Provide Patient Information"
                 description="Enter the patient's name, age, gender, medical condition, required care and location"
               />
-              <StepItem 
+              <StepItem
                 index={2}
                 number="3"
                 title="Care Coordinator Review"
                 description="Our Care Coordinator reviews needs and creates a personalized care plan"
               />
-              <StepItem 
+              <StepItem
                 index={3}
                 number="4"
                 title="Schedule Care"
@@ -253,11 +254,12 @@ const Home = () => {
               viewport={{ once: true }}
               className="relative h-full min-h-[400px]"
             >
-              <img 
+              <img
                 src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=600&q=80"
-                alt="Doctor with patient at home"
-                className="w-full h-full object-cover rounded-2xl shadow-lg font-bold" 
+                alt="Doctor visiting home with bag"
+                className="w-full h-full object-cover rounded-2xl shadow-lg"
                 onError={(e) => { e.target.style.display = 'none' }}
+                loading="lazy"
               />
             </motion.div>
           </div>
@@ -274,7 +276,7 @@ const Home = () => {
                 <h3 className="text-2xl font-bold uppercase tracking-tight">Service Hours Notice</h3>
               </div>
               <p className="text-text-body font-medium max-w-xl">
-                Our services are available from <span className="font-bold underline decoration-primary decoration-2">8AM to 8PM</span> only. 
+                Our services are available from <span className="font-bold underline decoration-primary decoration-2">8AM to 8PM</span> only.
                 Services are for registered persons/families only.
               </p>
             </div>
@@ -297,7 +299,7 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -314,7 +316,7 @@ const Home = () => {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -346,7 +348,7 @@ const TrustBadge = ({ icon, text }) => (
 );
 
 const ServiceCard = ({ icon, title, description, image, index }) => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
@@ -356,11 +358,12 @@ const ServiceCard = ({ icon, title, description, image, index }) => (
   >
     {image && (
       <div className="h-48 overflow-hidden">
-        <img 
-          src={image} 
-          alt={title} 
+        <img
+          src={image}
+          alt={title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           onError={(e) => { e.target.style.display = 'none' }}
+          loading="lazy"
         />
       </div>
     )}
@@ -373,7 +376,7 @@ const ServiceCard = ({ icon, title, description, image, index }) => (
 );
 
 const StepItem = ({ number, title, description, index }) => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}

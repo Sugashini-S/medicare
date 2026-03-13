@@ -16,7 +16,6 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Profile from './pages/Profile';
 import FamilyPlan from './pages/FamilyPlan';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -56,14 +55,6 @@ const AnimatedRoutes = () => {
           element={
             <ProtectedRoute>
               <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
             </ProtectedRoute>
           }
         />

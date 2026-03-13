@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { 
   Stethoscope, Video, Activity, Beaker, 
   Baby, ShoppingBag, Clock, ShieldCheck,
-  CheckCircle, ArrowRight
+  CheckCircle, ArrowRight, Truck, Users
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const Services = () => {
       title: "Doctor Visit at Home",
       description: "Our qualified doctors come to your home for consultation, diagnosis, and treatment planning, saving you the stress of travel.",
       features: ["Physical examination", "Prescription management", "Post-hospitalization follow-up"],
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&q=80"
+      image: "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=500&q=80"
     },
     {
       id: 2,
@@ -28,21 +28,29 @@ const Services = () => {
     {
       id: 3,
       icon: <Activity size={32} />,
-      title: "Nursing Care",
-      description: "Experienced nurses available for short-term and long-term care, including injections, wound dressing, and monitoring.",
-      features: ["Post-operative care", "Geriatric care", "Infusion services"],
-      image: "https://images.unsplash.com/photo-1584515933487-779824d29309?w=500&q=80"
+      title: "Nursing Care (24x7)",
+      description: "Experienced nurses available for 24x7 care, including injections, wound dressing, and critical monitoring at home.",
+      features: ["24x7 Post-operative care", "Geriatric care", "Infusion services"],
+      image: "https://images.unsplash.com/photo-1632833239869-a37e3a5806d2?w=500&q=80"
     },
     {
       id: 4,
-      icon: <Beaker size={32} />,
-      title: "Home Lab Collection",
-      description: "Professional lab technicians visit your home to collect samples. Reports are delivered digitally or physically.",
-      features: ["Blood & urine tests", "Full body checkup", "NMC verified labs"],
-      image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=500&q=80"
+      icon: <Activity size={32} />,
+      title: "Physiotherapy & Rehabilitation",
+      description: "Professional physiotherapists provide massage and exercises to help you recover mobility and strength at home.",
+      features: ["Post-stroke rehab", "Joint pain relief", "Sports injury recovery"],
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80"
     },
     {
       id: 5,
+      icon: <Users size={32} />,
+      title: "Bedside Caregiver",
+      description: "Trained attendants to help bedridden or elderly patients with daily activities and basic medical needs.",
+      features: ["Personal hygiene help", "Medication reminders", "Mobility support"],
+      image: "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=500&q=80"
+    },
+    {
+      id: 6,
       icon: <Baby size={32} />,
       title: "Mother & Child Care",
       description: "Comprehensive care for new mothers and babies, including lactation support and infant health monitoring.",
@@ -50,12 +58,28 @@ const Services = () => {
       image: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=500&q=80"
     },
     {
-      id: 6,
+      id: 7,
+      icon: <Beaker size={32} />,
+      title: "Home Sample Collection",
+      description: "Professional lab technicians visit your home to collect samples for blood tests and investigations.",
+      features: ["Blood & urine tests", "NMC verified labs", "Digital reports"],
+      image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=500&q=80"
+    },
+    {
+      id: 8,
       icon: <ShoppingBag size={32} />,
       title: "Doorstep Pharmacy",
       description: "Order medicines and medical equipment. We ensure quick delivery to your doorstep in Nagaon.",
       features: ["Prescription medicines", "Healthcare essentials", "Equipment rental"],
-      image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=500&q=80"
+      image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=500&q=80"
+    },
+    {
+      id: 9,
+      icon: <Truck size={32} />,
+      title: "Ambulance",
+      description: "Emergency ambulance services for critical patient transport to SIMS hospital or other facilities.",
+      features: ["24x7 Emergency line", "Oxygen support", "Trained paramedics"],
+      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&q=80"
     }
   ];
 
@@ -108,6 +132,7 @@ const Services = () => {
                   alt={service.title} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   onError={(e) => { e.target.style.display = 'none' }}
+                  loading="lazy"
                 />
               </div>
               <div className="p-8">
