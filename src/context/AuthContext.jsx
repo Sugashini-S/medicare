@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('medicare_user');
+    const storedUser = localStorage.getItem('spondon_user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
       setIsAuthenticated(true);
@@ -16,28 +16,37 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  const login = (userData) => {
-    setUser(userData);
-    setIsAuthenticated(true);
-    localStorage.setItem('medicare_user', JSON.stringify(userData));
+  const login = (phone) => {
+    // In a real app, this would verify OTP
+    // For now, we fetch user by phone or create a mock session
+    const storedUser = localStorage.getItem('spondon_user');
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      if (parsedUser.phone === phone) {
+        setIsAuthenticated(true);
+        return true;
+      }
+    }
+    return false;
   };
 
   const register = (userData) => {
-    setUser(userData);
+    const newUser = { ...userData, isRegistered: true };
+    setUser(newUser);
     setIsAuthenticated(true);
-    localStorage.setItem('medicare_user', JSON.stringify(userData));
+    localStorage.setItem('spondon_user', JSON.stringify(newUser));
   };
 
   const updateProfile = (updatedData) => {
     const newUser = { ...user, ...updatedData };
     setUser(newUser);
-    localStorage.setItem('medicare_user', JSON.stringify(newUser));
+    localStorage.setItem('spondon_user', JSON.stringify(newUser));
   };
 
   const logout = () => {
     setUser(null);
     setIsAuthenticated(false);
-    localStorage.removeItem('medicare_user');
+    localStorage.removeItem('spondon_user');
   };
 
   return (
@@ -54,3 +63,4 @@ export const useAuth = () => {
   }
   return context;
 };
+

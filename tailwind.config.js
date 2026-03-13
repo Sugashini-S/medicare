@@ -7,30 +7,34 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#0a2463",
-          light: "#1e40af",
+          DEFAULT: "#0d9488", // Primary Teal
+          dark: "#0f766e",    // Dark Teal
         },
-        accent: {
-          DEFAULT: "#00b4d8",
-          soft: "#e0f7fa",
+        secondary: {
+          DEFAULT: "#f59e0b", // CTA Amber
         },
-        surface: "#f9fafb",
+        background: {
+          light: "#f0fdfa",   // Light Teal Bg
+          DEFAULT: "#ffffff",
+        },
         text: {
-          primary: "#0f172a",
-          muted: "#64748b",
+          dark: "#134e4a",
+          body: "#374151",
+          muted: "#6b7280",
         },
-        success: "#22c55e",
-        warning: "#f59e0b",
-        error: "#ef4444",
+        glow: "rgba(13,148,136,0.12)",
+        border: "#e5e7eb",
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        playfair: ["Playfair Display", "serif"],
+        dm: ["DM Sans", "sans-serif"],
       },
       backgroundImage: {
-        'mesh-gradient': 'radial-gradient(at 0% 0%, hsla(210,100%,10%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(190,100%,50%,0.2) 0, transparent 50%)',
+        'teal-gradient': 'linear-gradient(135deg, #0d9488 0%, #0f766e 100%)',
       }
     },
   },
   plugins: [],
 }
+
 

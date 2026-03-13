@@ -13,6 +13,7 @@ import Services from './pages/Services';
 import Appointments from './pages/Appointments';
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
+import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
@@ -27,18 +28,12 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/doctors" element={<Doctors />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         
         {/* Protected Routes */}
-        <Route
-          path="/doctors"
-          element={
-            <ProtectedRoute>
-              <Doctors />
-            </ProtectedRoute>
-          }
-        />
         <Route
           path="/appointments"
           element={

@@ -4,78 +4,87 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   User, Calendar as CalendarIcon, Clock, CheckCircle2,
   ArrowRight, ArrowLeft, Search, Star, MapPin,
-  Sparkles, LayoutDashboard
+  Sparkles, LayoutDashboard, Stethoscope, Video, 
+  Baby, Activity, Beaker, Pill
 } from 'lucide-react';
-import { doctors } from '../data/mockData';
-import { cn } from '../utils/cn';
+import { toast } from 'react-hot-toast';
+
 const Appointments = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [bookingData, setBookingData] = useState({
-    doctor: null,
+    service: null,
     date: '',
-    time: '',
+    time: 'Morning (8AM - 12PM)',
     patientName: '',
     patientPhone: '',
-    reason: ''
+    address: '',
+    symptoms: ''
   });
-  const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredDoctors = doctors.filter(doc =>
-    doc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    doc.specialty.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const services = [
+    { id: 'visit', title: 'Doctor Visit at Home', icon: <Stethoscope />, fee: '500-1000' },
+    { id: 'tele', title: 'Tele-Consultation', icon: <Video />, fee: '300-500' },
+    { id: 'nursing', title: 'Nursing Care', icon: <Activity />, fee: 'Varies' },
+    { id: 'lab', title: 'Home Lab Collection', icon: <Beaker />, fee: 'As per test' },
+    { id: 'child', title: 'Mother & Child Care', icon: <Baby />, fee: 'Varies' },
+    { id: 'pharmacy', title: 'Pharmacy Delivery', icon: <Pill />, fee: 'Medicine cost' },
+  ];
 
   const timeSlots = [
-    '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM',
-    '11:00 AM', '11:30 AM', '02:00 PM', '02:30 PM',
-    '03:00 PM', '03:30 PM', '04:00 PM', '04:30 PM'
+    'Morning (8AM - 12PM)',
+    'Afternoon (12PM - 4PM)',
+    'Evening (4PM - 8PM)',
   ];
 
   const handleNext = () => setStep(step + 1);
   const handleBack = () => setStep(step - 1);
 
   const steps = [
-    { title: 'Select Doctor', icon: <User /> },
+    { title: 'Service', icon: <Stethoscope /> },
     { title: 'Schedule', icon: <CalendarIcon /> },
+    { title: 'Details', icon: <User /> },
     { title: 'Confirm', icon: <CheckCircle2 /> }
   ];
 
+  const handleSubmit = () => {
+    toast.success('Service request submitted! Our coordinator will call you shortly.');
+    setStep(4);
+  };
+
   return (
-    <div className="min-h-screen bg-surface pt-32 pb-20 px-6">
-      <div className="container mx-auto max-w-5xl">
+    <div className="min-h-screen bg-white pt-32 pb-20 px-6">
+      <div className="container-custom max-w-5xl">
         {/* Progress Bar */}
         <div className="mb-16">
           <div className="flex justify-between items-center relative max-w-2xl mx-auto">
-            <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -translate-y-1/2 z-0" />
+            <div className="absolute top-1/2 left-0 right-0 h-1 bg-border -translate-y-1/2 z-0" />
             <motion.div
-              className="absolute top-1/2 left-0 h-1 bg-accent -translate-y-1/2 z-0"
+              className="absolute top-1/2 left-0 h-1 bg-primary -translate-y-1/2 z-0"
               initial={{ width: '0%' }}
               animate={{ width: `${((step - 1) / (steps.length - 1)) * 100}%` }}
-              transition={{ duration: 0.5 }}
             />
             {steps.map((s, idx) => (
               <div key={idx} className="relative z-10 flex flex-col items-center gap-2">
                 <motion.div
                   animate={{
-                    backgroundColor: step > idx + 1 ? '#00b4d8' : step === idx + 1 ? '#0a2463' : '#e5e7eb',
-                    scale: step === idx + 1 ? 1.2 : 1
+                    backgroundColor: step > idx + 1 ? '#0d9488' : step === idx + 1 ? '#0d9488' : '#e2e8f0',
+                    scale: step === idx + 1 ? 1.1 : 1
                   }}
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold transition-colors"
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold transition-all"
                 >
                   {step > idx + 1 ? <CheckCircle2 size={20} /> : idx + 1}
                 </motion.div>
-                <span className={cn(
-                  "text-xs font-bold uppercase tracking-wider",
-                  step === idx + 1 ? "text-primary" : "text-text-muted"
-                )}>{s.title}</span>
+                <span className={`text-[10px] font-bold uppercase tracking-wider ${step >= idx + 1 ? 'text-primary' : 'text-text-muted'}`}>
+                  {s.title}
+                </span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Content Area */}
-        <div className="bg-white rounded-[40px] shadow-2xl shadow-primary/5 min-h-[500px] border border-gray-50 overflow-hidden relative">
+        <div className="bg-background-light rounded-[40px] shadow-sm border border-border min-h-[500px] overflow-hidden relative">
           <AnimatePresence mode="wait">
             {step === 1 && (
               <motion.div
@@ -83,51 +92,32 @@ const Appointments = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
-                className="p-8 md:p-12"
+                className="p-8 md:p-12 text-center"
               >
-                <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-10">
-                  <h2 className="text-3xl font-extrabold text-primary tracking-tight">Step 1: Choose Your Doctor</h2>
-                  <div className="relative group w-full md:w-80">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" size={18} />
-                    <input
-                      type="text"
-                      placeholder="Doctor name or specialty..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full pl-12 pr-4 py-3 bg-surface rounded-xl border-2 border-transparent focus:border-accent focus:bg-white transition-all font-medium"
-                    />
-                  </div>
+                <div className="mb-10">
+                  <h2 className="text-3xl font-bold text-text-dark mb-2">Select Doorstep Service</h2>
+                  <p className="text-text-muted">What care do you need today?</p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {filteredDoctors.map((doc) => (
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {services.map((service) => (
                     <button
-                      key={doc.id}
+                      key={service.id}
                       onClick={() => {
-                        setBookingData({ ...bookingData, doctor: doc });
+                        setBookingData({ ...bookingData, service });
                         handleNext();
                       }}
-                      className={cn(
-                        "p-6 rounded-[32px] border-2 text-left transition-all duration-300 group",
-                        bookingData.doctor?.id === doc.id
-                          ? "border-accent bg-accent/5 ring-4 ring-accent/10"
-                          : "border-gray-50 hover:border-gray-200 bg-white"
-                      )}
+                      className={`p-6 rounded-3xl border-2 text-left transition-all group ${
+                        bookingData.service?.id === service.id
+                          ? "border-primary bg-white shadow-lg"
+                          : "border-transparent bg-white hover:border-primary/20"
+                      }`}
                     >
-                      <div className="flex items-center gap-4 mb-4">
-                        <img src={doc.image} alt={doc.name} className="w-14 h-14 rounded-2xl object-cover" />
-                        <div>
-                          <h4 className="font-bold text-primary group-hover:text-accent transition-colors">{doc.name}</h4>
-                          <p className="text-xs font-bold text-accent uppercase tracking-widest">{doc.specialty}</p>
-                        </div>
+                      <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+                        {service.icon}
                       </div>
-                      <div className="flex items-center justify-between text-xs text-text-muted">
-                        <div className="flex items-center gap-1 font-bold">
-                          <Star size={12} className="text-warning" fill="currentColor" />
-                          {doc.rating}
-                        </div>
-                        <span className="font-bold text-primary">₹{doc.fee}</span>
-                      </div>
+                      <h4 className="font-bold text-text-dark mb-1">{service.title}</h4>
+                      <p className="text-xs text-text-muted">Est. Fee: {service.fee}</p>
                     </button>
                   ))}
                 </div>
@@ -143,56 +133,39 @@ const Appointments = () => {
                 className="p-8 md:p-12"
               >
                 <div className="flex items-center gap-6 mb-12">
-                  <button onClick={handleBack} className="p-3 bg-surface rounded-full hover:bg-gray-100 transition-colors">
+                  <button onClick={handleBack} className="p-3 bg-white border border-border rounded-full hover:bg-background-light transition-colors">
                     <ArrowLeft size={24} className="text-primary" />
                   </button>
                   <div>
-                    <h2 className="text-3xl font-extrabold text-primary tracking-tight">Step 2: Pick Schedule</h2>
-                    <p className="text-text-muted">Available slots for {bookingData.doctor?.name}</p>
+                    <h2 className="text-3xl font-bold text-text-dark">Select Schedule</h2>
+                    <p className="text-text-muted">Preferred timing for {bookingData.service?.title}</p>
                   </div>
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-12">
-                  <div className="space-y-6 text-left">
-                    <label className="text-xs font-bold text-primary uppercase tracking-widest ml-1 inline-flex items-center gap-2">
-                      <CalendarIcon size={14} />
-                      Select Date
-                    </label>
+                  <div className="space-y-6">
+                    <label className="text-xs font-bold text-text-dark uppercase tracking-widest ml-1 block">Preferred Date</label>
                     <input
                       type="date"
+                      min={new Date().toISOString().split('T')[0]}
                       value={bookingData.date}
                       onChange={(e) => setBookingData({ ...bookingData, date: e.target.value })}
-                      className="w-full p-4 bg-surface rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white transition-all font-bold text-primary"
+                      className="w-full p-4 bg-white rounded-2xl border-2 border-transparent focus:border-primary transition-all font-bold outline-none"
                     />
-
-                    <div className="p-6 bg-surface rounded-[32px] border border-gray-100 mt-8">
-                      <h4 className="font-bold text-primary mb-2 flex items-center gap-2">
-                        <MapPin size={18} className="text-accent" />
-                        Clinic Location
-                      </h4>
-                      <p className="text-sm text-text-muted leading-relaxed">
-                        MediCare Premium Clinic, 5th Floor, Block A, <br />
-                        {bookingData.doctor?.location}, Tamil Nadu
-                      </p>
-                    </div>
                   </div>
 
                   <div className="space-y-6">
-                    <label className="text-xs font-bold text-primary uppercase tracking-widest ml-1 inline-flex items-center gap-2">
-                      <Clock size={14} />
-                      Choose Time Slot
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <label className="text-xs font-bold text-text-dark uppercase tracking-widest ml-1 block">Preferred Window</label>
+                    <div className="grid gap-3">
                       {timeSlots.map((slot) => (
                         <button
                           key={slot}
                           onClick={() => setBookingData({ ...bookingData, time: slot })}
-                          className={cn(
-                            "py-3 rounded-xl font-bold text-sm transition-all duration-200 border-2",
+                          className={`p-4 rounded-xl font-bold text-sm text-left transition-all border-2 ${
                             bookingData.time === slot
-                              ? "bg-accent border-accent text-white shadow-lg shadow-accent/20"
-                              : "bg-white border-gray-100 text-text-muted hover:border-accent/40"
-                          )}
+                              ? "bg-primary border-primary text-white shadow-md"
+                              : "bg-white border-transparent text-text-muted hover:border-primary/20"
+                          }`}
                         >
                           {slot}
                         </button>
@@ -203,12 +176,11 @@ const Appointments = () => {
 
                 <div className="mt-12 flex justify-end">
                   <button
-                    disabled={!bookingData.date || !bookingData.time}
+                    disabled={!bookingData.date}
                     onClick={handleNext}
-                    className="px-10 py-4 bg-primary text-white rounded-2xl font-bold flex items-center gap-2 hover:bg-primary-light transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-primary/20"
+                    className="btn-primary flex items-center gap-2 disabled:opacity-50"
                   >
-                    Continue to Confirm
-                    <ArrowRight size={20} />
+                    Continue <ArrowRight size={20} />
                   </button>
                 </div>
               </motion.div>
@@ -223,77 +195,73 @@ const Appointments = () => {
                 className="p-8 md:p-12"
               >
                 <div className="flex items-center gap-6 mb-12">
-                  <button onClick={handleBack} className="p-3 bg-surface rounded-full hover:bg-gray-100 transition-colors">
+                  <button onClick={handleBack} className="p-3 bg-white border border-border rounded-full hover:bg-background-light transition-colors">
                     <ArrowLeft size={24} className="text-primary" />
                   </button>
-                  <div>
-                    <h2 className="text-3xl font-extrabold text-primary tracking-tight">Step 3: Patient Details</h2>
-                    <p className="text-text-muted">Review and confirm your medical appointment</p>
-                  </div>
+                  <h2 className="text-3xl font-bold text-text-dark font-display">Patient Information</h2>
                 </div>
 
                 <div className="grid lg:grid-cols-12 gap-12">
-                  <div className="lg:col-span-7 space-y-8 text-left">
-                    <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="lg:col-span-12 space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-primary uppercase tracking-widest ml-1">Patient Name</label>
+                        <label className="text-xs font-bold text-text-dark uppercase tracking-widest ml-1">Patient Full Name</label>
                         <input
+                          autoFocus
                           type="text"
-                          placeholder="Full Name"
+                          placeholder="Name of person needing care"
                           value={bookingData.patientName}
                           onChange={(e) => setBookingData({ ...bookingData, patientName: e.target.value })}
-                          className="w-full px-6 py-4 bg-surface rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white transition-all font-medium"
+                          className="w-full px-6 py-4 bg-white rounded-2xl border-2 border-transparent focus:border-primary transition-all outline-none"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-primary uppercase tracking-widest ml-1">Mobile Number</label>
+                        <label className="text-xs font-bold text-text-dark uppercase tracking-widest ml-1">Contact Phone</label>
                         <input
                           type="tel"
-                          placeholder="10-digit phone"
+                          placeholder="+91 XXXXX XXXXX"
                           value={bookingData.patientPhone}
                           onChange={(e) => setBookingData({ ...bookingData, patientPhone: e.target.value })}
-                          className="w-full px-6 py-4 bg-surface rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white transition-all font-medium"
+                          className="w-full px-6 py-4 bg-white rounded-2xl border-2 border-transparent focus:border-primary transition-all outline-none"
                         />
                       </div>
                     </div>
+                    
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-primary uppercase tracking-widest ml-1">Reason for consultation</label>
+                      <label className="text-xs font-bold text-text-dark uppercase tracking-widest ml-1">Full Address in Nagaon</label>
                       <textarea
-                        rows={3}
-                        placeholder="Describe your health issue briefly..."
-                        value={bookingData.reason}
-                        onChange={(e) => setBookingData({ ...bookingData, reason: e.target.value })}
-                        className="w-full px-6 py-4 bg-surface rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white transition-all font-medium resize-none"
+                        rows={2}
+                        placeholder="House no, Area, Ward no, Nagaon..."
+                        value={bookingData.address}
+                        onChange={(e) => setBookingData({ ...bookingData, address: e.target.value })}
+                        className="w-full px-6 py-4 bg-white rounded-2xl border-2 border-transparent focus:border-primary transition-all outline-none resize-none"
                       ></textarea>
                     </div>
-                  </div>
 
-                  <div className="lg:col-span-5">
-                    <div className="bg-surface rounded-[32px] p-8 border border-gray-100 flex flex-col items-center">
-                      <h4 className="font-bold text-primary mb-8 underline decoration-accent/20 underline-offset-8">Appointment Summary</h4>
-                      <div className="w-full space-y-6">
-                        <SummaryItem label="Doctor" value={bookingData.doctor?.name} />
-                        <SummaryItem label="Specialty" value={bookingData.doctor?.specialty} />
-                        <SummaryItem label="Date" value={bookingData.date} />
-                        <SummaryItem label="Time" value={bookingData.time} />
-                        <div className="h-px bg-gray-200" />
-                        <div className="flex justify-between items-center text-primary">
-                          <span className="font-bold">Consultation Fee</span>
-                          <span className="text-2xl font-black">₹{bookingData.doctor?.fee}</span>
-                        </div>
-                      </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold text-text-dark uppercase tracking-widest ml-1">Describe symptoms / Needs (Optional)</label>
+                      <textarea
+                        rows={2}
+                        placeholder="e.g. Fever for 2 days, Nursing for wound dressing..."
+                        value={bookingData.symptoms}
+                        onChange={(e) => setBookingData({ ...bookingData, symptoms: e.target.value })}
+                        className="w-full px-6 py-4 bg-white rounded-2xl border-2 border-transparent focus:border-primary transition-all outline-none resize-none"
+                      ></textarea>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-12 flex justify-end">
+                <div className="mt-12 flex justify-between items-center border-t border-border pt-8">
+                  <div className="hidden md:block">
+                    <p className="text-xs text-text-muted font-bold uppercase tracking-widest">Selected Service</p>
+                    <p className="text-primary font-bold">{bookingData.service?.title}</p>
+                  </div>
                   <button
-                    disabled={!bookingData.patientName || !bookingData.patientPhone}
-                    onClick={handleNext}
-                    className="px-12 py-5 bg-accent text-primary rounded-2xl font-black text-lg flex items-center gap-3 hover:bg-primary hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-accent/20 group"
+                    disabled={!bookingData.patientName || !bookingData.patientPhone || !bookingData.address}
+                    onClick={handleSubmit}
+                    className="btn-primary px-12 disabled:opacity-50"
                   >
-                    Confirm & Book
-                    <Sparkles size={24} className="group-hover:rotate-12 transition-transform" />
+                    Submit Request
                   </button>
                 </div>
               </motion.div>
@@ -301,59 +269,51 @@ const Appointments = () => {
 
             {step === 4 && (
               <motion.div
-                key="success"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="p-12 md:p-20 flex flex-col items-center justify-center text-center"
               >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: [0, 1.2, 1] }}
-                  transition={{ type: 'spring', damping: 10, delay: 0.2 }}
-                  className="w-32 h-32 bg-success/10 text-success rounded-full flex items-center justify-center mb-10"
-                >
-                  <CheckCircle2 size={80} strokeWidth={2.5} />
-                </motion.div>
+                <div className="w-24 h-24 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-8">
+                  <CheckCircle2 size={60} />
+                </div>
 
-                <h2 className="text-4xl md:text-5xl font-black text-primary mb-4">Confirmed!</h2>
-                <p className="text-text-muted text-lg max-w-sm mb-12">
-                  Your appointment has been successfully booked.
-                  Appointment ID: <span className="text-primary font-bold">#APP{Math.floor(Math.random() * 100000)}</span>
+                <h2 className="text-4xl font-bold text-text-dark mb-4 font-display">Request Submitted!</h2>
+                <p className="text-text-muted text-lg max-w-sm mb-12 leading-relaxed">
+                  Your request for **{bookingData.service?.title}** has been received. 
+                  Our care coordinator will call you within 15-30 minutes to confirm.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
                     onClick={() => navigate('/dashboard')}
-                    className="px-8 py-4 bg-primary text-white rounded-2xl font-bold flex items-center gap-2 hover:bg-primary-light transition-all shadow-xl shadow-primary/20"
+                    className="btn-primary px-8 flex items-center gap-2"
                   >
                     <LayoutDashboard size={20} />
-                    Go to Dashboard
+                    View Status
                   </button>
                   <button
                     onClick={() => navigate('/')}
-                    className="px-8 py-4 bg-white text-primary border-2 border-primary/10 rounded-2xl font-bold hover:bg-surface transition-all"
+                    className="btn-outline px-8"
                   >
                     Return Home
                   </button>
                 </div>
-
-                {/* Decorations */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-[100px]" />
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-success/10 rounded-full blur-[100px]" />
               </motion.div>
             )}
           </AnimatePresence>
         </div>
+
+        {/* Note */}
+        {step < 4 && (
+          <p className="mt-8 text-center text-sm text-text-muted italic">
+            Note: Actual fees may vary based on the specific requirements and distance from Nagaon hub. 
+            All payments are collected after the service.
+          </p>
+        )}
       </div>
     </div>
   );
 };
 
-const SummaryItem = ({ label, value }) => (
-  <div className="flex justify-between items-start">
-    <span className="text-xs font-bold text-text-muted uppercase tracking-widest">{label}</span>
-    <span className="text-sm font-bold text-primary max-w-[150px] text-right">{value || "Not selected"}</span>
-  </div>
-);
-
 export default Appointments;
+

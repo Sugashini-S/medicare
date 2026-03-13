@@ -19,33 +19,31 @@ const Login = () => {
   };
 
   const handleVerifySuccess = () => {
-    // In a real app, we'd verify the phone against a DB
-    login({ phone, id: Date.now() });
+    login({ phone, id: Date.now(), name: 'User' }); // Mocking name for now
     setIsOTPModalOpen(false);
-    navigate('/');
+    navigate('/dashboard');
   };
 
   return (
-    <div className="min-h-screen bg-surface pt-32 pb-20 px-6 flex items-center justify-center">
+    <div className="min-h-screen bg-white pt-32 pb-20 px-6 flex items-center justify-center">
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="max-w-md w-full bg-white rounded-[40px] shadow-2xl overflow-hidden p-8 md:p-12 relative"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="max-w-md w-full bg-background-light rounded-[32px] md:rounded-[40px] shadow-2xl overflow-hidden p-6 md:p-12 relative border border-border"
       >
         <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center p-3 bg-primary/5 rounded-2xl mb-6">
-            <HeartPulse className="text-primary w-8 h-8" />
+          <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-2xl mb-6">
+            <Phone className="text-primary w-8 h-8" />
           </div>
-          <h2 className="text-3xl font-extrabold text-primary mb-2">Welcome Back</h2>
-          <p className="text-text-muted">Login to access your health portal</p>
+          <h2 className="text-3xl font-bold text-text-dark mb-2 font-display">Welcome Back</h2>
+          <p className="text-text-muted">Enter your registered mobile number</p>
         </div>
 
         <form onSubmit={handleSendOTP} className="space-y-6">
           <div className="space-y-2">
-            <label className="text-xs font-bold text-primary uppercase tracking-widest ml-1">Mobile Number</label>
+            <label className="text-xs font-bold text-text-dark uppercase tracking-widest ml-1">Mobile Number</label>
             <div className="relative">
-              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" size={20} />
-              <span className="absolute left-12 top-1/2 -translate-y-1/2 text-primary font-bold border-r border-gray-200 pr-3">+91</span>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary font-bold border-r border-border pr-3">+91</span>
               <input
                 type="tel"
                 required
@@ -53,34 +51,33 @@ const Login = () => {
                 placeholder="XXXXXXXXXX"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
-                className="w-full pl-24 pr-4 py-4 bg-surface border-2 border-transparent focus:border-accent focus:bg-white rounded-2xl transition-all duration-300 font-medium"
+                className="w-full pl-16 pr-4 py-4 bg-white border-2 border-transparent focus:border-primary rounded-2xl transition-all duration-300 font-medium outline-none"
               />
             </div>
           </div>
 
           <button
             type="submit"
-            className="w-full bg-primary hover:bg-primary-light text-white py-4 rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2"
+            className="w-full bg-primary hover:bg-dark-teal text-white py-4 rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 transition-all flex items-center justify-center gap-2"
           >
-            <span>Send OTP</span>
+            <span>Get OTP</span>
             <ArrowRight size={20} />
           </button>
         </form>
 
-        <div className="mt-8 flex items-center gap-4 py-4 px-6 bg-surface rounded-2xl border border-gray-100">
-          <ShieldCheck className="text-accent" size={24} />
+        <div className="mt-8 flex items-center gap-4 py-4 px-6 bg-white rounded-2xl border border-border">
+          <ShieldCheck className="text-secondary" size={24} />
           <p className="text-xs text-text-muted leading-tight">
-            We'll send a one-time password to your mobile number to keep your account secure.
+            Safety first. We use OTP-based login to protect your health records.
           </p>
         </div>
 
         <p className="mt-10 text-center text-text-muted">
-          New here? <Link to="/register" className="text-accent font-bold hover:underline">Create an account</Link>
+          New to Spondon? <Link to="/register" className="text-primary font-bold hover:underline">Register Now</Link>
         </p>
 
-        {/* Decorations */}
-        <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/5 rounded-full blur-[60px] pointer-events-none" />
-        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-[60px] pointer-events-none" />
+        {/* Global style for font-display */}
+        <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-[60px] pointer-events-none" />
       </motion.div>
 
       <OTPModal

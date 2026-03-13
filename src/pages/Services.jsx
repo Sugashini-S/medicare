@@ -1,162 +1,166 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Stethoscope, Activity, Beaker, Syringe, 
-  Shield, Scissors, CheckCircle2, ArrowRight,
-  PhoneCall, Zap
+  Stethoscope, Video, Activity, Beaker, 
+  Baby, ShoppingBag, Clock, ShieldCheck,
+  CheckCircle2, ArrowRight, MapPin
 } from 'lucide-react';
-import { services, healthPackages } from '../data/mockData';
-
-const ICON_MAP = {
-  Stethoscope: <Stethoscope />,
-  Activity: <Activity />,
-  Beaker: <Beaker />,
-  Syringe: <Syringe />,
-  Shield: <Shield />,
-  Scissors: <Scissors />
-};
+import { Link } from 'react-router-dom';
 
 const Services = () => {
+  const coreServices = [
+    {
+      id: 1,
+      icon: <Stethoscope size={32} />,
+      title: "Doctor Visit at Home",
+      description: "Our qualified doctors come to your home for consultation, diagnosis, and treatment planning, saving you the stress of travel.",
+      features: ["Physical examination", "Prescription management", "Post-hospitalization follow-up"]
+    },
+    {
+      id: 2,
+      icon: <Video size={32} />,
+      title: "Telemedicine Consultation",
+      description: "Connect with specialist doctors via video call from your home. Ideal for follow-ups and non-emergency consultations.",
+      features: ["Specialist consultation", "E-prescriptions", "Instant medical advice"]
+    },
+    {
+      id: 3,
+      icon: <Activity size={32} />,
+      title: "Nursing Care",
+      description: "Experienced nurses available for short-term and long-term care, including injections, wound dressing, and monitoring.",
+      features: ["Post-operative care", "Geriatric care", "Infusion services"]
+    },
+    {
+      id: 4,
+      icon: <Beaker size={32} />,
+      title: "Home Lab Collection",
+      description: "Professional lab technicians visit your home to collect samples. Reports are delivered digitally or physically.",
+      features: ["Blood & urine tests", "Full body checkup", "NMC verified labs"]
+    },
+    {
+      id: 5,
+      icon: <Baby size={32} />,
+      title: "Mother & Child Care",
+      description: "Comprehensive care for new mothers and babies, including lactation support and infant health monitoring.",
+      features: ["Postpartum support", "Neonatal care", "Vaccination guidance"]
+    },
+    {
+      id: 6,
+      icon: <ShoppingBag size={32} />,
+      title: "Doorstep Pharmacy",
+      description: "Order medicines and medical equipment. We ensure quick delivery to your doorstep in Nagaon.",
+      features: ["Prescription medicines", "Healthcare essentials", "Equipment rental"]
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-surface pt-32 pb-20">
-      <div className="container mx-auto px-6">
+    <div className="min-h-screen bg-white pt-32 pb-20">
+      <div className="container-custom">
         {/* Header */}
-        <div className="text-center mb-20 space-y-4">
-          <motion.span 
+        <div className="text-center mb-20">
+          <motion.div 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-xs font-bold text-accent uppercase tracking-[0.3em]"
+            className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-bold text-sm mb-4"
           >
-            Care & Excellence
-          </motion.span>
+            A Unit of SIMS Multispecial Hospital
+          </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-6xl font-extrabold text-primary tracking-tight"
+            transition={{ delay: 0.1 }}
+            className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6"
           >
-            Our World-Class <br /> <span className="text-accent underline decoration-primary/10 transition-all decoration-8 underline-offset-8">Medical Services</span>
+            Our Doorstep <span className="text-primary italic">Services</span>
           </motion.h1>
-          <p className="text-text-muted text-lg max-w-2xl mx-auto leading-relaxed">
-            From basic diagnostics to advanced surgical procedures, we provide comprehensive 
-            healthcare solutions tailored to your needs.
+          <p className="text-text-body text-lg max-w-2xl mx-auto leading-relaxed">
+            Professional healthcare delivered to your door. We combine medical expertise 
+            with the convenience of your home environment.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
-          {services.map((service, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+          {coreServices.map((service, idx) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="group bg-white p-10 rounded-[40px] shadow-xl shadow-primary/5 hover:shadow-2xl hover:shadow-accent/10 transition-all duration-500 border border-gray-50 flex flex-col items-start text-left"
+              viewport={{ once: true }}
+              className="group bg-background-light p-8 rounded-3xl border border-transparent hover:border-primary/20 hover:bg-white hover:shadow-xl transition-all duration-300"
             >
-              <div className="w-16 h-16 bg-surface rounded-2xl flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-all duration-500 mb-8">
-                {React.cloneElement(ICON_MAP[service.icon], { size: 32 })}
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-primary shadow-sm mb-6 group-hover:scale-110 transition-transform duration-300">
+                {service.icon}
               </div>
-              <h3 className="text-2xl font-extrabold text-primary mb-4 group-hover:text-accent transition-colors">
+              <h3 className="text-2xl font-bold text-text-dark mb-4">
                 {service.title}
               </h3>
-              <p className="text-text-muted leading-relaxed mb-8">
+              <p className="text-text-muted text-sm leading-relaxed mb-6">
                 {service.description}
               </p>
-              <button className="mt-auto flex items-center gap-2 text-primary font-bold hover:text-accent transition-colors group/btn">
-                <span>Learn More</span>
-                <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-              </button>
+              <ul className="space-y-3 mb-8">
+                {service.features.map((feature, fidx) => (
+                  <li key={fidx} className="flex items-center gap-2 text-sm text-text-body font-medium">
+                    <CheckCircle2 size={16} className="text-primary shrink-0" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <Link to="/appointments" className="flex items-center gap-2 text-primary font-bold text-sm group/btn">
+                Book This Service
+                <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+              </Link>
             </motion.div>
           ))}
         </div>
 
-        {/* Health Packages Section */}
-        <div className="mb-24">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 px-4">
-            <div className="space-y-4">
-              <h2 className="text-4xl font-extrabold text-primary tracking-tight">Health Packages</h2>
-              <p className="text-text-muted max-w-xl">
-                Preventive healthcare is the best medicine. Choose a package that fits your lifestyle.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {healthPackages.map((pkg, idx) => (
-              <motion.div
-                key={pkg.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white p-8 rounded-[3rem] border border-gray-100 shadow-xl flex flex-col group relative overflow-hidden"
-              >
-                {/* Popular Tag */}
-                {pkg.tag === 'Popular' && (
-                  <div className="absolute top-0 right-0 bg-accent text-white py-1.5 px-6 rounded-bl-3xl text-[10px] font-bold uppercase tracking-widest shadow-lg">
-                    Best Value
-                  </div>
-                )}
-                
-                <h3 className="text-xl font-bold text-primary mb-2 mt-4">{pkg.name}</h3>
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-3xl font-black text-primary">₹{pkg.price}</span>
-                  <span className="text-text-muted text-xs font-bold uppercase tracking-widest">/ one time</span>
-                </div>
-
-                <ul className="space-y-4 mb-10 flex-1">
-                  {pkg.features.map((feature, fidx) => (
-                    <li key={fidx} className="flex items-start gap-3">
-                      <CheckCircle2 size={18} className="text-accent shrink-0 mt-0.5" />
-                      <span className="text-sm font-medium text-text-primary leading-tight">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <button className="w-full py-4 bg-surface group-hover:bg-primary group-hover:text-white text-primary font-bold rounded-2xl transition-all duration-300">
-                  Select Package
-                </button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Emergency Banner */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="bg-primary rounded-[40px] p-8 md:p-16 relative overflow-hidden text-white"
-        >
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
+        {/* Service Hours notice */}
+        <section className="bg-teal-gradient rounded-[40px] p-8 md:p-16 text-white relative overflow-hidden">
+          <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-4 py-1 bg-error/20 rounded-full text-error font-bold text-xs uppercase tracking-widest animate-pulse">
-                <Zap size={14} fill="currentColor" />
-                Emergency 24x7
+              <div className="flex items-center gap-3">
+                <Clock size={40} className="text-secondary" />
+                <h2 className="text-3xl md:text-4xl font-bold">Standard Timing</h2>
               </div>
-              <h2 className="text-3xl md:text-5xl font-extrabold leading-tight">
-                Critical Care When You <br /> Need It The Most.
-              </h2>
-              <p className="text-white/60 text-lg max-w-xl">
-                Our emergency response team is available 24/7. Immediate medical assistance is just a phone call away.
+              <p className="text-white/80 text-lg leading-relaxed">
+                Our doorstep services are available from 8:00 AM to 8:00 PM daily. 
+                Please note that we are not an emergency service. For critical emergencies, 
+                please visit SIMS Multispecial Hospital immediately.
               </p>
-            </div>
-            <div className="flex flex-col items-center gap-6">
-              <div className="flex flex-col items-center">
-                 <p className="text-white/40 text-sm font-bold uppercase tracking-widest mb-2">Emergency Number</p>
-                 <a href="tel:1800-419-1066" className="text-3xl md:text-5xl font-black text-white hover:text-accent transition-colors flex items-center gap-4">
-                   <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center">
-                     <PhoneCall size={32} className="text-accent" />
-                   </div>
-                   1800-419-1066
-                 </a>
+              <div className="flex flex-wrap gap-4 pt-4">
+                <a href="tel:+911234567890" className="flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-xl font-bold hover:bg-secondary hover:text-white transition-all">
+                  Contact Support
+                </a>
               </div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+                <ShieldCheck className="text-secondary" /> Registration Benefits
+              </h3>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 size={20} className="text-secondary shrink-0 mt-0.5" />
+                  <span>Annual registration for only ₹100</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 size={20} className="text-secondary shrink-0 mt-0.5" />
+                  <span>Covers up to 6 family members under one plan</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 size={20} className="text-secondary shrink-0 mt-0.5" />
+                  <span>Priority booking for all doorstep services</span>
+                </li>
+              </ul>
             </div>
           </div>
-          {/* Decorations */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/5 rounded-full blur-[80px] -translate-x-1/2 translate-y-1/2" />
-        </motion.div>
+          {/* Background decoration */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
+        </section>
       </div>
     </div>
   );
 };
 
 export default Services;
+
