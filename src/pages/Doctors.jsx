@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import {
   Stethoscope, Users, Award, ShieldCheck,
-  CheckCircle, Video, Activity
+  CheckCircle,
 } from 'lucide-react';
 
 const Doctors = () => {
