@@ -15,7 +15,7 @@ const Services = () => {
       title: "Doctor Visit at Home",
       description: "Our qualified doctors come to your home for consultation, diagnosis, and treatment planning, saving you the stress of travel.",
       features: ["Physical examination", "Prescription management", "Post-hospitalization follow-up"],
-      image: "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=500&q=80"
+      image: "https://images.unsplash.com/photo-1643297654416-05795d62e39c?w=500&q=80"
     },
     {
       id: 2,
@@ -24,6 +24,7 @@ const Services = () => {
       description: "Connect with specialist doctors via video call from your home. Ideal for follow-ups and non-emergency consultations.",
       features: ["Specialist consultation", "E-prescriptions", "Instant medical advice"],
       image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&q=80"
+      /* TODO: Replace with Indian healthcare photo when available */
     },
     {
       id: 3,

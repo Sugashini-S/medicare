@@ -54,11 +54,12 @@ const Doctors = () => {
             All our professionals are registered with the National Medical Commission (NMC).
           </p>
           <img 
-            src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=1200&q=80" 
-            alt="Doctors and nurses team" 
+            src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1200&q=80" 
+            alt="Indian doctors and nurses team" 
             className="w-full h-64 object-cover rounded-2xl mb-8 opacity-80 shadow-lg" 
             onError={(e) => { e.target.style.display = 'none' }}
             loading="lazy"
+            /* TODO: Replace with Indian healthcare photo when available */
           />
         </div>
 

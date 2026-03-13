@@ -1,3 +1,4 @@
+// TODO: Replace Unsplash images with real Spondon team photos before launch
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -72,8 +73,8 @@ const Home = () => {
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
               <img 
-                src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80" 
-                alt="Nurse helping elderly patient at home" 
+                src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&q=80" 
+                alt="Indian female doctor smiling" 
                 className="w-full h-full object-cover rounded-2xl"
                 onError={(e) => { e.target.style.display='none' }}
                 loading="lazy"
@@ -149,7 +150,7 @@ const Home = () => {
               icon={<Stethoscope className="text-primary" size={32} />}
               title="Doctor Visit at Home"
               description="Our doctors come to your home for consultation and treatment"
-              image="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"
+              image="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=400&q=80"
             />
             <ServiceCard
               index={1}
@@ -157,13 +158,14 @@ const Home = () => {
               title="Telemedicine Consultation"
               description="Video consultation with doctors from the comfort of your home"
               image="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80"
+              /* TODO: Replace with Indian healthcare photo when available */
             />
             <ServiceCard
               index={2}
               icon={<Activity className="text-primary" size={32} />}
               title="Nursing Care"
               description="24×7 trained nursing services at your doorstep"
-              image="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&q=80"
+              image="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=400&q=80"
             />
             <ServiceCard
               index={3}
@@ -171,6 +173,7 @@ const Home = () => {
               title="Home Lab Collection"
               description="Lab technicians collect samples at home, reports delivered to you"
               image="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&q=80"
+              /* TODO: Replace with Indian healthcare photo when available */
             />
             <ServiceCard
               index={4}
@@ -178,6 +181,7 @@ const Home = () => {
               title="Mother & Child Care"
               description="Comprehensive postpartum and newborn care at home"
               image="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=400&q=80"
+              /* TODO: Replace with Indian healthcare photo when available */
             />
             <ServiceCard
               index={5}
@@ -185,6 +189,7 @@ const Home = () => {
               title="Doorstep Pharmacy"
               description="Medicines and medical equipment delivered to your door"
               image="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&q=80"
+              /* TODO: Replace with Indian healthcare photo when available */
             />
           </div>
 
@@ -260,6 +265,7 @@ const Home = () => {
                 className="w-full h-full object-cover rounded-2xl shadow-lg"
                 onError={(e) => { e.target.style.display = 'none' }}
                 loading="lazy"
+                /* TODO: Replace with Indian healthcare photo when available */
               />
             </motion.div>
           </div>
