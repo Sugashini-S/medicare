@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Calendar, Plus, User, 
-  ShieldCheck, Clock, PhoneCall, MapPin, CheckCircle
+  ShieldCheck, Clock, PhoneCall, MapPin, CheckCircle, ArrowRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -58,30 +58,58 @@ const Dashboard = () => {
 
         {/* Membership Banner */}
         <div className="mb-12">
-          <div className="bg-teal-gradient rounded-[40px] p-8 md:p-12 text-white relative overflow-hidden shadow-2xl shadow-primary/20">
-            <div className="relative z-10 flex flex-col lg:flex-row justify-between items-center gap-8">
-              <div className="text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
-                  <ShieldCheck size={16} className="text-secondary" />
-                  Spondon Annual Membership
+          {!user?.hasFamilyPlan ? (
+            <div className="bg-white border-2 border-teal-600 rounded-[40px] p-8 md:p-12 relative overflow-hidden shadow-xl shadow-teal-900/5 group hover:shadow-teal-900/10 transition-all">
+              <div className="relative z-10 flex flex-col lg:flex-row justify-between items-center gap-8">
+                <div className="text-center lg:text-left">
+                  <div className="inline-flex items-center gap-2 bg-teal-50 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6 text-teal-600">
+                    <ShieldCheck size={16} />
+                    Upgrade Available
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 font-display text-teal-900">
+                    Upgrade to <span className="text-primary italic">Family Plan</span>
+                  </h2>
+                  <p className="text-gray-600 max-w-md font-medium">
+                    Cover up to 6 family members for just ₹100/year. Priority care and 24/7 support for your loved ones.
+                  </p>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 font-display">
-                  Your Membership is <span className="text-secondary italic">Active</span>
-                </h2>
-                <p className="text-white/80 max-w-md">
-                   Valid until <span className="text-white font-bold">{membership.expiryDate}</span>. 
-                   You have added {membership.familyCount} of {membership.maxFamily} permitted family members.
-                </p>
+                <div className="flex gap-4">
+                  <Link 
+                    to="/family-plan" 
+                    className="bg-primary text-white px-10 py-5 rounded-2xl font-bold hover:bg-dark-teal transition-all shadow-xl shadow-primary/20 flex items-center gap-2 group"
+                  >
+                    Get Family Plan <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
               </div>
-              <div className="flex gap-4">
-                <button className="bg-white text-primary px-8 py-4 rounded-2xl font-bold hover:bg-background-light transition-all shadow-xl">
-                  Add Family Member
-                </button>
-              </div>
+              <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-teal-50 rounded-full blur-3xl opacity-50 group-hover:scale-125 transition-transform" />
             </div>
-            {/* Decoration */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3" />
-          </div>
+          ) : (
+            <div className="bg-teal-gradient rounded-[40px] p-8 md:p-12 text-white relative overflow-hidden shadow-2xl shadow-primary/20">
+              <div className="relative z-10 flex flex-col lg:flex-row justify-between items-center gap-8">
+                <div className="text-center lg:text-left">
+                  <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
+                    <ShieldCheck size={16} className="text-secondary" />
+                    Family Plan Active ✓
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 font-display">
+                    Your Membership is <span className="text-secondary italic">Active</span>
+                  </h2>
+                  <p className="text-white/80 max-w-md">
+                     Valid until <span className="text-white font-bold">{membership.expiryDate}</span>. 
+                     Covers up to {membership.maxFamily} permitted family members.
+                  </p>
+                </div>
+                <div className="flex gap-4">
+                  <button className="bg-white text-primary px-8 py-4 rounded-2xl font-bold hover:bg-background-light transition-all shadow-xl">
+                    Manage Family
+                  </button>
+                </div>
+              </div>
+              {/* Decoration */}
+              <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3" />
+            </div>
+          )}
         </div>
 
         <div className="grid lg:grid-cols-12 gap-12">

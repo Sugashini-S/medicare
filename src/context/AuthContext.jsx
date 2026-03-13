@@ -17,30 +17,66 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (userData) => {
-    // In a real app, this would verify OTP via API
-    // For now, we simulate a successful login
+    const storedUsers = JSON.parse(localStorage.getItem('registered_users') || '[]');
+    let registeredUser = storedUsers.find(u => u.phone === userData.phone);
+    
+    if (!registeredUser) {
+      // For demo, create a dummy user
+      registeredUser = {
+        phone: userData.phone,
+        name: 'User',
+        hasFamilyPlan: false,
+        isRegistered: true
+      };
+    }
+
     const userToSet = {
-      ...userData,
-      name: userData.name || 'User',
-      phone: userData.phone,
+      ...registeredUser,
       isRegistered: true
     };
     setUser(userToSet);
     setIsAuthenticated(true);
     localStorage.setItem('spondon_user', JSON.stringify(userToSet));
-    return true;
+    return { success: true };
   };
 
   const register = (userData) => {
     const newUser = { 
       ...userData, 
       isRegistered: true,
+      hasFamilyPlan: false,
       membershipActive: true,
       expiryDate: '12 March 2027' // Mock expiry
     };
+
+    // Store in general list of registered users
+    const storedUsers = JSON.parse(localStorage.getItem('registered_users') || '[]');
+    const existingIndex = storedUsers.findIndex(u => u.phone === userData.phone);
+    if (existingIndex > -1) {
+      storedUsers[existingIndex] = newUser;
+    } else {
+      storedUsers.push(newUser);
+    }
+    localStorage.setItem('registered_users', JSON.stringify(storedUsers));
+
+    // Set as current user
     setUser(newUser);
     setIsAuthenticated(true);
     localStorage.setItem('spondon_user', JSON.stringify(newUser));
+  };
+
+  const activateFamilyPlan = () => {
+    if (!user) return;
+    const updatedUser = { ...user, hasFamilyPlan: true };
+    
+    // Update current user
+    setUser(updatedUser);
+    localStorage.setItem('spondon_user', JSON.stringify(updatedUser));
+    
+    // Update in general list
+    const storedUsers = JSON.parse(localStorage.getItem('registered_users') || '[]');
+    const updatedUsers = storedUsers.map(u => u.phone === user.phone ? updatedUser : u);
+    localStorage.setItem('registered_users', JSON.stringify(updatedUsers));
   };
 
   const updateProfile = (updatedData) => {

@@ -17,6 +17,7 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
+import FamilyPlan from './pages/FamilyPlan';
 import ScrollToTop from './components/ScrollToTop';
 
 const AnimatedRoutes = () => {
@@ -32,6 +33,14 @@ const AnimatedRoutes = () => {
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route
+          path="/family-plan"
+          element={
+            <ProtectedRoute>
+              <FamilyPlan />
+            </ProtectedRoute>
+          }
+        />
         
         {/* Protected Routes */}
         <Route

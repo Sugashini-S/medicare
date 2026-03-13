@@ -6,9 +6,11 @@ import {
   Beaker, Baby, ShoppingBag, ShieldCheck
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Home = () => {
   const [showPromo, setShowPromo] = useState(true);
+  const { isAuthenticated, user } = useAuth();
 
   return (
     <motion.div
@@ -50,7 +52,7 @@ const Home = () => {
               </motion.div>
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                 <Link to="/register" className="btn-outline w-full flex items-center justify-center gap-2">
-                  Register — ₹100/year
+                  Free Registration
                 </Link>
               </motion.div>
             </div>
@@ -85,7 +87,7 @@ const Home = () => {
 
       {/* Floating Registration Promo Banner */}
       <AnimatePresence>
-        {showPromo && (
+        {showPromo && (!isAuthenticated || !user?.hasFamilyPlan) && (
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -105,7 +107,7 @@ const Home = () => {
                   <ShieldCheck size={24} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-1">📋 Register Your Family Today</h3>
+                  <h3 className="text-xl font-bold mb-1">📋 {!isAuthenticated ? 'Register Your Family Today' : 'Get Family Plan'}</h3>
                   <p className="text-white/80 text-sm">₹100 for 1 year registration</p>
                 </div>
               </div>
@@ -117,13 +119,10 @@ const Home = () => {
                 <li className="flex items-center gap-2">
                   <Check size={14} className="text-secondary" /> Renewal charges: ₹75/year
                 </li>
-                <li className="flex items-center gap-2">
-                  <Check size={14} className="text-secondary" /> Services available after registration
-                </li>
               </ul>
               
               <Link 
-                to="/register" 
+                to={!isAuthenticated ? "/register" : "/family-plan"} 
                 className="block w-full text-center bg-secondary hover:bg-opacity-90 text-white font-bold py-3 rounded-xl transition-all shadow-lg animate-pulse"
               >
                 Register Now
@@ -182,10 +181,30 @@ const Home = () => {
             />
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-12 space-y-8">
             <Link to="/services" className="text-primary font-bold hover:underline flex items-center justify-center gap-1">
               View All Services <ArrowRight size={16} />
             </Link>
+
+            {/* Family Plan Banner */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-4xl mx-auto bg-primary/5 border-2 border-primary/10 rounded-[40px] p-8 md:p-10 flex flex-col md:flex-row items-center gap-8 text-left"
+            >
+              <div className="w-20 h-20 bg-primary/10 text-primary rounded-[32px] flex items-center justify-center shrink-0">
+                <ShieldCheck size={40} />
+              </div>
+              <div className="flex-grow">
+                <h3 className="text-2xl font-bold text-text-dark mb-2 font-display">Want full family coverage?</h3>
+                <p className="text-text-muted font-medium">Protect up to 6 family members with our ₹100 Family Plan.</p>
+              </div>
+              <Link to="/family-plan" className="btn-primary flex items-center gap-2 shrink-0 group">
+                Get the ₹100 Family Plan
+                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
