@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Mail, Phone, MapPin, Calendar, Users, Droplets, Save, Edit2, CheckCircle, ShieldCheck, Home } from 'lucide-react';
+import { Camera, Mail, Save, Edit2, CheckCircle, ShieldCheck, Home } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { cn } from '../utils/cn';
 

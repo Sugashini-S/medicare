@@ -1,15 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  History, Calendar, FileText, Pill, 
-  Plus, ChevronRight, User, Sparkles,
-  Heart, Droplets, TrendingUp, ShieldCheck,
-  Clock, PhoneCall, MapPin, CheckCircle,
-  AlertCircle
+  Calendar, Plus, User, 
+  ShieldCheck, Clock, PhoneCall, MapPin, CheckCircle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { cn } from '../utils/cn';
 
 const Dashboard = () => {
   const { user } = useAuth();

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Stethoscope, Users, Award, ShieldCheck, 
-  ArrowRight, Phone, MessageSquare, Video, 
+  ArrowRight, Phone, Video, 
   Activity, Beaker, Baby, HeartPulse 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';

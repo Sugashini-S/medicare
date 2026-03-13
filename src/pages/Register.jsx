@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { User, Phone, ArrowRight, ShieldCheck, HeartPulse, CheckCircle, CreditCard } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
-import OTPModal from '../components/OTPModal';
-import logo from '../assets/logo.svg';
+import { User, Phone, ArrowRight, ShieldCheck, CheckCircle, CreditCard } from 'lucide-react';
 
 const Register = () => {
   const [step, setStep] = useState(1); // 1: Info, 4: Payment
@@ -45,8 +42,32 @@ const Register = () => {
         {/* Left Side: Information (Hidden on small mobile if preferred, but let's make it stack) */}
         <div className="hidden lg:flex bg-teal-gradient p-12 flex-col justify-between relative overflow-hidden text-white">
           <div className="relative z-10">
-            <Link to="/" className="inline-block mb-12">
-              <img src={logo} alt="Spondon Doorstep Healthcare" className="h-10 w-auto brightness-0 invert" />
+            <Link to="/" className="inline-flex items-center gap-3 mb-12 group">
+              {/* Clean Spondon logo — red heart + ECG line + white cross */}
+              <svg width="48" height="44" viewBox="0 0 48 44" fill="none" xmlns="http://www.w3.org/2000/svg" className="brightness-0 invert group-hover:scale-110 transition-transform">
+                <path d="M24 40C24 40 3 27 3 13.5C3 7.7 7.7 3 13.5 3C17.2 3 20.4 4.9 22.3 7.8C22.9 8.7 23.5 9.8 24 11C24.5 9.8 25.1 8.7 25.7 7.8C27.6 4.9 30.8 3 34.5 3C40.3 3 45 7.7 45 13.5C45 27 24 40 24 40Z" fill="#DC2626"/>
+                <rect x="21.5" y="6" width="5" height="14" rx="2.5" fill="white"/>
+                <rect x="15" y="11.5" width="18" height="5" rx="2.5" fill="white"/>
+                <path d="M5 22 L11 22 L14 16 L17.5 29 L21 19.5 L23.5 24 L26.5 22 L43 22" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+              </svg>
+              <div className="flex flex-col leading-none text-left">
+                <span style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontWeight: 800,
+                  fontSize: '1.5rem',
+                  color: 'white',
+                  letterSpacing: '0.05em',
+                  lineHeight: 1.1
+                }}>SPONDON</span>
+                <span style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontWeight: 500,
+                  fontSize: '0.75rem',
+                  color: 'rgba(255,255,255,0.8)',
+                  letterSpacing: '0.02em',
+                  lineHeight: 1.4
+                }}>Doorstep Healthcare</span>
+              </div>
             </Link>
             
             <h1 className="text-5xl font-bold leading-tight mb-8 font-display">
@@ -79,7 +100,15 @@ const Register = () => {
         <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-white relative">
           {/* Mobile Logo */}
           <div className="lg:hidden mb-10">
-            <img src={logo} alt="Spondon Logo" className="h-8 w-auto" />
+            <Link to="/" className="inline-flex items-center gap-2">
+              <svg width="40" height="36" viewBox="0 0 48 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 40C24 40 3 27 3 13.5C3 7.7 7.7 3 13.5 3C17.2 3 20.4 4.9 22.3 7.8C22.9 8.7 23.5 9.8 24 11C24.5 9.8 25.1 8.7 25.7 7.8C27.6 4.9 30.8 3 34.5 3C40.3 3 45 7.7 45 13.5C45 27 24 40 24 40Z" fill="#DC2626"/>
+                <rect x="21.5" y="6" width="5" height="14" rx="2.5" fill="white"/>
+                <rect x="15" y="11.5" width="18" height="5" rx="2.5" fill="white"/>
+                <path d="M5 22 L11 22 L14 16 L17.5 29 L21 19.5 L23.5 24 L26.5 22 L43 22" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+              </svg>
+              <span className="font-display font-black text-xl text-primary tracking-tighter uppercase">Spondon</span>
+            </Link>
           </div>
 
           {/* Step Indicator */}

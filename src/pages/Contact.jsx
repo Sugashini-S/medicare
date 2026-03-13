@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Phone, Mail, MapPin, Clock, 
-  MessageSquare, Send, CheckCircle 
+  Send, CheckCircle 
 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 

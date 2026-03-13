@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  ArrowRight, Check, X, Clock, HelpCircle, 
-  MapPin, Phone, Stethoscope, Video, Activity, 
+  ArrowRight, Check, X, Clock, 
+  MapPin, Stethoscope, Video, Activity, 
   Beaker, Baby, ShoppingBag, ShieldCheck
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 
 const Home = () => {
   const [showPromo, setShowPromo] = useState(true);

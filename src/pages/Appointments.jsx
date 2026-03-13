@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  User, Calendar as CalendarIcon, Clock, CheckCircle,
-  ArrowRight, ArrowLeft, Search, Star, MapPin,
-  Sparkles, LayoutDashboard, Stethoscope, Video, 
+  User, Calendar as CalendarIcon, CheckCircle,
+  ArrowRight, ArrowLeft, LayoutDashboard, Stethoscope, Video, 
   Baby, Activity, Beaker, Pill
 } from 'lucide-react';
 import { toast } from 'react-hot-toast';

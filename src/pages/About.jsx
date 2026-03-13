@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Target, Award, ShieldCheck, HeartPulse, 
-  MapPin, Clock, CheckCircle, Hospital
+  Target, Award, ShieldCheck, 
+  MapPin, CheckCircle, Hospital
 } from 'lucide-react';
 
 const About = () => {

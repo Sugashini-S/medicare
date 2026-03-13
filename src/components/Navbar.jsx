@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, User, LogOut, ChevronRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import logo from '../assets/logo.svg';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,15 +35,19 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            {/* Heart + Cross icon */}
-            <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21 38C21 38 4 27 4 14.5C4 8.7 8.7 4 14.5 4C17.5 4 20.2 5.3 21 6.5C21.8 5.3 24.5 4 27.5 4C33.3 4 38 8.7 38 14.5C38 27 21 38 21 38Z" fill="#e53e3e"/>
-              <path d="M6 21 L11 21 L13.5 15 L17 27 L20.5 18 L23 23 L26 21 L36 21" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-              <rect x="19" y="5" width="4" height="13" rx="2" fill="white" opacity="0.9"/>
-              <rect x="13.5" y="10.5" width="15" height="4" rx="2" fill="white" opacity="0.9"/>
+            {/* Clean Spondon logo — red heart + ECG line + white cross */}
+            <svg width="48" height="44" viewBox="0 0 48 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Red heart shape */}
+              <path d="M24 40C24 40 3 27 3 13.5C3 7.7 7.7 3 13.5 3C17.2 3 20.4 4.9 22.3 7.8C22.9 8.7 23.5 9.8 24 11C24.5 9.8 25.1 8.7 25.7 7.8C27.6 4.9 30.8 3 34.5 3C40.3 3 45 7.7 45 13.5C45 27 24 40 24 40Z" fill="#DC2626"/>
+              {/* White cross — vertical bar */}
+              <rect x="21.5" y="6" width="5" height="14" rx="2.5" fill="white"/>
+              {/* White cross — horizontal bar */}
+              <rect x="15" y="11.5" width="18" height="5" rx="2.5" fill="white"/>
+              {/* ECG / heartbeat line across the heart */}
+              <path d="M5 22 L11 22 L14 16 L17.5 29 L21 19.5 L23.5 24 L26.5 22 L43 22" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
             </svg>
 
-            {/* Brand text — exactly like the PDF */}
+            {/* Brand text */}
             <div className="flex flex-col leading-none">
               <span style={{
                 fontFamily: "'DM Sans', sans-serif",
@@ -53,29 +56,22 @@ const Navbar = () => {
                 color: '#0d9488',
                 letterSpacing: '0.05em',
                 lineHeight: 1.1
-              }}>
-                SPONDON
-              </span>
+              }}>SPONDON</span>
               <span style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontWeight: 500,
                 fontSize: '0.75rem',
                 color: '#0f766e',
                 letterSpacing: '0.02em',
-                lineHeight: 1.3
-              }}>
-                Doorstep Healthcare
-              </span>
+                lineHeight: 1.4
+              }}>Doorstep Healthcare</span>
               <span style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontWeight: 400,
-                fontSize: '0.6rem',
+                fontSize: '0.58rem',
                 color: '#6b7280',
-                letterSpacing: '0.01em',
-                lineHeight: 1.3
-              }}>
-                A Unit of SIMS Multispecial Hospital
-              </span>
+                lineHeight: 1.4
+              }}>A Unit of SIMS Multispecial Hospital</span>
             </div>
           </Link>
 

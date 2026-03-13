@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { 
   Stethoscope, Video, Activity, Beaker, 
   Baby, ShoppingBag, Clock, ShieldCheck,
-  CheckCircle, ArrowRight, MapPin
+  CheckCircle, ArrowRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
