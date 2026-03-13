@@ -16,22 +16,28 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  const login = (phone) => {
-    // In a real app, this would verify OTP
-    // For now, we fetch user by phone or create a mock session
-    const storedUser = localStorage.getItem('spondon_user');
-    if (storedUser) {
-      const parsedUser = JSON.parse(storedUser);
-      if (parsedUser.phone === phone) {
-        setIsAuthenticated(true);
-        return true;
-      }
-    }
-    return false;
+  const login = (userData) => {
+    // In a real app, this would verify OTP via API
+    // For now, we simulate a successful login
+    const userToSet = {
+      ...userData,
+      name: userData.name || 'User',
+      phone: userData.phone,
+      isRegistered: true
+    };
+    setUser(userToSet);
+    setIsAuthenticated(true);
+    localStorage.setItem('spondon_user', JSON.stringify(userToSet));
+    return true;
   };
 
   const register = (userData) => {
-    const newUser = { ...userData, isRegistered: true };
+    const newUser = { 
+      ...userData, 
+      isRegistered: true,
+      membershipActive: true,
+      expiryDate: '12 March 2027' // Mock expiry
+    };
     setUser(newUser);
     setIsAuthenticated(true);
     localStorage.setItem('spondon_user', JSON.stringify(newUser));

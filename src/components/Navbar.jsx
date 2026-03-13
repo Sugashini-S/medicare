@@ -35,9 +35,48 @@ const Navbar = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img src={logo} alt="Spondon Logo" className="h-10 w-auto" />
+          <Link to="/" className="flex items-center gap-3">
+            {/* Heart + Cross icon */}
+            <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 38C21 38 4 27 4 14.5C4 8.7 8.7 4 14.5 4C17.5 4 20.2 5.3 21 6.5C21.8 5.3 24.5 4 27.5 4C33.3 4 38 8.7 38 14.5C38 27 21 38 21 38Z" fill="#e53e3e"/>
+              <path d="M6 21 L11 21 L13.5 15 L17 27 L20.5 18 L23 23 L26 21 L36 21" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+              <rect x="19" y="5" width="4" height="13" rx="2" fill="white" opacity="0.9"/>
+              <rect x="13.5" y="10.5" width="15" height="4" rx="2" fill="white" opacity="0.9"/>
+            </svg>
+
+            {/* Brand text — exactly like the PDF */}
+            <div className="flex flex-col leading-none">
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 800,
+                fontSize: '1.5rem',
+                color: '#0d9488',
+                letterSpacing: '0.05em',
+                lineHeight: 1.1
+              }}>
+                SPONDON
+              </span>
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 500,
+                fontSize: '0.75rem',
+                color: '#0f766e',
+                letterSpacing: '0.02em',
+                lineHeight: 1.3
+              }}>
+                Doorstep Healthcare
+              </span>
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 400,
+                fontSize: '0.6rem',
+                color: '#6b7280',
+                letterSpacing: '0.01em',
+                lineHeight: 1.3
+              }}>
+                A Unit of SIMS Multispecial Hospital
+              </span>
+            </div>
           </Link>
 
           {/* Nav Links - Desktop */}

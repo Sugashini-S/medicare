@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle2, Loader2 } from 'lucide-react';
+import { X, CheckCircle, Loader2 } from 'lucide-react';
 import { cn } from '../utils/cn';
 
 const OTPModal = ({ isOpen, onClose, onVerify, phoneNumber }) => {
@@ -11,6 +11,10 @@ const OTPModal = ({ isOpen, onClose, onVerify, phoneNumber }) => {
 
   useEffect(() => {
     if (isOpen && inputRefs.current[0]) {
+      // Clear OTP on reopen
+      setOtp(['', '', '', '', '', '']);
+      setIsVerified(false);
+      setIsVerifying(false);
       inputRefs.current[0].focus();
     }
   }, [isOpen]);
@@ -25,6 +29,11 @@ const OTPModal = ({ isOpen, onClose, onVerify, phoneNumber }) => {
     if (value && index < 5) {
       inputRefs.current[index + 1].focus();
     }
+
+    // Auto-verify when 6th digit is entered
+    if (newOtp.every(digit => digit !== '') && newOtp.length === 6) {
+      handleVerify(newOtp);
+    }
   };
 
   const handleKeyDown = (index, e) => {
@@ -33,8 +42,8 @@ const OTPModal = ({ isOpen, onClose, onVerify, phoneNumber }) => {
     }
   };
 
-  const handleVerify = async () => {
-    if (otp.some(digit => !digit)) return;
+  const handleVerify = async (otpData = otp) => {
+    if (otpData.some(digit => !digit)) return;
 
     setIsVerifying(true);
     // Simulate API call
@@ -75,9 +84,9 @@ const OTPModal = ({ isOpen, onClose, onVerify, phoneNumber }) => {
                     initial={{ scale: 0 }}
                     animate={{ scale: [0, 1.2, 1] }}
                     transition={{ type: 'spring', damping: 12 }}
-                    className="w-20 h-20 bg-success/10 text-success rounded-full flex items-center justify-center mb-6"
+                    className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6"
                   >
-                    <CheckCircle2 size={48} />
+                    <CheckCircle size={48} />
                   </motion.div>
                   <h2 className="text-2xl font-bold text-primary mb-2">Verified!</h2>
                   <p className="text-text-muted">Account creation in progress...</p>
@@ -85,7 +94,7 @@ const OTPModal = ({ isOpen, onClose, onVerify, phoneNumber }) => {
               ) : (
                 <>
                   <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl font-bold text-primary">Verify OTP</h2>
+                    <h2 className="text-2xl font-bold text-primary font-display">Verify OTP</h2>
                     <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                       <X size={20} className="text-text-muted" />
                     </button>
@@ -106,19 +115,19 @@ const OTPModal = ({ isOpen, onClose, onVerify, phoneNumber }) => {
                         value={digit}
                         onChange={e => handleChange(index, e.target.value)}
                         onKeyDown={e => handleKeyDown(index, e)}
-                        className="w-12 h-14 border-2 border-gray-100 bg-surface rounded-xl text-center text-2xl font-bold text-primary focus:border-accent focus:ring-0 transition-all duration-200"
+                        className="w-12 h-14 border-2 border-gray-100 bg-background-light rounded-xl text-center text-2xl font-bold text-primary focus:border-primary focus:ring-0 transition-all duration-200 outline-none"
                       />
                     ))}
                   </div>
 
                   <button
-                    onClick={handleVerify}
+                    onClick={() => handleVerify()}
                     disabled={otp.some(digit => !digit) || isVerifying}
                     className={cn(
                       "w-full py-4 rounded-2xl font-bold text-white transition-all duration-300 flex items-center justify-center gap-2",
                       otp.some(digit => !digit) || isVerifying
                         ? "bg-gray-200 cursor-not-allowed"
-                        : "bg-primary hover:bg-primary-light shadow-lg shadow-primary/20"
+                        : "bg-primary hover:bg-dark-teal shadow-lg shadow-primary/20"
                     )}
                   >
                     {isVerifying ? (
@@ -132,14 +141,14 @@ const OTPModal = ({ isOpen, onClose, onVerify, phoneNumber }) => {
                   </button>
 
                   <p className="text-center mt-6 text-sm text-text-muted">
-                    Didn't receive code? <button className="text-accent font-bold hover:underline">Resend OTP</button>
+                    Didn't receive code? <button className="text-primary font-bold hover:underline">Resend OTP</button>
                   </p>
                 </>
               )}
 
               {/* Background Decorations */}
-              <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
             </motion.div>
           </div>
         </>

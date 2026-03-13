@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { 
   Stethoscope, Video, Activity, Beaker, 
   Baby, ShoppingBag, Clock, ShieldCheck,
-  CheckCircle2, ArrowRight, MapPin
+  CheckCircle, ArrowRight, MapPin
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -54,8 +54,13 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white pt-32 pb-20">
-      <div className="container-custom">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="min-h-screen bg-white pt-32 pb-20 px-4 md:px-8 lg:px-16"
+    >
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">
           <motion.div 
@@ -69,7 +74,7 @@ const Services = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6"
+            className="text-4xl md:text-6xl font-bold mb-6 font-display"
           >
             Our Doorstep <span className="text-primary italic">Services</span>
           </motion.h1>
@@ -80,7 +85,7 @@ const Services = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {coreServices.map((service, idx) => (
             <motion.div
               key={service.id}
@@ -88,6 +93,7 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
+              whileHover={{ y: -5 }}
               className="group bg-background-light p-8 rounded-3xl border border-transparent hover:border-primary/20 hover:bg-white hover:shadow-xl transition-all duration-300"
             >
               <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-primary shadow-sm mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -102,15 +108,17 @@ const Services = () => {
               <ul className="space-y-3 mb-8">
                 {service.features.map((feature, fidx) => (
                   <li key={fidx} className="flex items-center gap-2 text-sm text-text-body font-medium">
-                    <CheckCircle2 size={16} className="text-primary shrink-0" />
+                    <CheckCircle size={16} className="text-primary shrink-0" />
                     {feature}
                   </li>
                 ))}
               </ul>
-              <Link to="/appointments" className="flex items-center gap-2 text-primary font-bold text-sm group/btn">
-                Book This Service
-                <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-              </Link>
+              <motion.div whileHover={{ x: 5 }} transition={{ type: 'spring', stiffness: 400 }}>
+                <Link to="/appointments" className="flex items-center gap-2 text-primary font-bold text-sm group/btn">
+                  Book This Service
+                  <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
             </motion.div>
           ))}
         </div>
@@ -121,7 +129,7 @@ const Services = () => {
             <div className="space-y-6">
               <div className="flex items-center gap-3">
                 <Clock size={40} className="text-secondary" />
-                <h2 className="text-3xl md:text-4xl font-bold">Standard Timing</h2>
+                <h2 className="text-3xl md:text-4xl font-bold font-display uppercase tracking-tight">Standard Timing</h2>
               </div>
               <p className="text-white/80 text-lg leading-relaxed">
                 Our doorstep services are available from 8:00 AM to 8:00 PM daily. 
@@ -129,9 +137,14 @@ const Services = () => {
                 please visit SIMS Multispecial Hospital immediately.
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
-                <a href="tel:+911234567890" className="flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-xl font-bold hover:bg-secondary hover:text-white transition-all">
+                <motion.a 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href="tel:+919435099908" 
+                  className="flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-xl font-bold hover:bg-secondary hover:text-white transition-all shadow-lg"
+                >
                   Contact Support
-                </a>
+                </motion.a>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
@@ -140,15 +153,15 @@ const Services = () => {
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 size={20} className="text-secondary shrink-0 mt-0.5" />
+                  <CheckCircle size={20} className="text-secondary shrink-0 mt-0.5" />
                   <span>Annual registration for only ₹100</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 size={20} className="text-secondary shrink-0 mt-0.5" />
+                  <CheckCircle size={20} className="text-secondary shrink-0 mt-0.5" />
                   <span>Covers up to 6 family members under one plan</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 size={20} className="text-secondary shrink-0 mt-0.5" />
+                  <CheckCircle size={20} className="text-secondary shrink-0 mt-0.5" />
                   <span>Priority booking for all doorstep services</span>
                 </li>
               </ul>
@@ -158,9 +171,10 @@ const Services = () => {
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
         </section>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 export default Services;
+
 

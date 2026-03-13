@@ -4,7 +4,7 @@ import {
   History, Calendar, FileText, Pill, 
   Plus, ChevronRight, User, Sparkles,
   Heart, Droplets, TrendingUp, ShieldCheck,
-  Clock, PhoneCall, MapPin, CheckCircle2,
+  Clock, PhoneCall, MapPin, CheckCircle,
   AlertCircle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -178,7 +178,7 @@ const Dashboard = () => {
                   Affiliated with SIMS Multispecial Hospital.
                 </p>
                 <div className="flex items-center gap-2 text-xs font-bold text-primary">
-                  <CheckCircle2 size={16} />
+                  <CheckCircle size={16} />
                   Verified Doorstep Provider
                 </div>
              </div>

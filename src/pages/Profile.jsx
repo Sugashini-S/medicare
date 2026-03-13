@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Mail, Phone, MapPin, Calendar, Users, Droplets, Save, Edit2, CheckCircle2, ShieldCheck, Home } from 'lucide-react';
+import { Camera, Mail, Phone, MapPin, Calendar, Users, Droplets, Save, Edit2, CheckCircle, ShieldCheck, Home } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { cn } from '../utils/cn';
 
@@ -127,19 +127,19 @@ const Profile = () => {
             </h3>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="flex items-center gap-3 text-sm text-text-muted">
-                <CheckCircle2 size={16} className="text-primary" />
+                <CheckCircle size={16} className="text-primary" />
                 Access to 24/7 Care Coordinator
               </div>
               <div className="flex items-center gap-3 text-sm text-text-muted">
-                <CheckCircle2 size={16} className="text-primary" />
+                <CheckCircle size={16} className="text-primary" />
                 Free Home Lab Collection
               </div>
               <div className="flex items-center gap-3 text-sm text-text-muted">
-                <CheckCircle2 size={16} className="text-primary" />
+                <CheckCircle size={16} className="text-primary" />
                 Wait-time reduced to 30 mins
               </div>
               <div className="flex items-center gap-3 text-sm text-text-muted">
-                <CheckCircle2 size={16} className="text-primary" />
+                <CheckCircle size={16} className="text-primary" />
                 Up to 6 family members covered
               </div>
             </div>
@@ -156,7 +156,7 @@ const Profile = () => {
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
             className="fixed bottom-10 left-1/2 -translate-x-1/2 bg-primary text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3 z-[100] font-bold"
           >
-            <CheckCircle2 size={24} />
+            <CheckCircle size={24} />
             Profile updated successfully
           </motion.div>
         )}

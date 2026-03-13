@@ -2,13 +2,18 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Target, Award, ShieldCheck, HeartPulse, 
-  MapPin, Clock, CheckCircle2, Hospital
+  MapPin, Clock, CheckCircle, Hospital
 } from 'lucide-react';
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-white pt-32 pb-20">
-      <div className="container-custom">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="min-h-screen bg-white pt-32 pb-20 px-4 md:px-8 lg:px-16"
+    >
+      <div className="max-w-7xl mx-auto">
         {/* Story Section */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
           <motion.div
@@ -20,7 +25,7 @@ const About = () => {
             <div className="inline-flex items-center gap-2 px-4 py-1 bg-primary/10 rounded-full text-primary font-bold text-xs uppercase tracking-widest">
               Our Vision
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight font-display">
               Quality Care at <br />
               <span className="text-primary italic">Your Doorstep</span>
             </h1>
@@ -35,16 +40,16 @@ const About = () => {
               for families in Nagaon and the surrounding regions.
             </p>
             
-            <div className="grid grid-cols-2 gap-6 pt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
-                  <CheckCircle2 size={20} />
+                  <CheckCircle size={20} />
                 </div>
                 <span className="font-bold text-text-dark">Professional Staff</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
-                  <CheckCircle2 size={20} />
+                  <CheckCircle size={20} />
                 </div>
                 <span className="font-bold text-text-dark">SIMS Support</span>
               </div>
@@ -64,27 +69,36 @@ const About = () => {
                 className="w-full aspect-square object-cover"
               />
             </div>
-            <div className="absolute -bottom-10 -left-10 bg-teal-gradient p-8 rounded-3xl shadow-xl text-white z-10 hidden md:block">
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="absolute -bottom-10 -left-10 bg-teal-gradient p-8 rounded-3xl shadow-xl text-white z-10 hidden md:block"
+            >
                <ShieldCheck size={40} className="text-secondary mb-4" />
                <p className="font-bold text-xl mb-1">Trusted & Certified</p>
                <p className="text-white/60 text-sm">Nagaon's Premium Choice</p>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
         {/* Core Values */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
           <ValueCard 
+            index={0}
             icon={<Target className="text-primary" size={32} />}
             title="Our Mission"
             text="To deliver preventive, curative, and supportive care in the primary healthcare space directly at the patient's home."
           />
           <ValueCard 
+            index={1}
             icon={<Award className="text-primary" size={32} />}
             title="Professional Ethics"
             text="We maintain the highest standards of medical privacy, professionalism, and compassionate care for every family."
           />
           <ValueCard 
+            index={2}
             icon={<Hospital className="text-primary" size={32} />}
             title="Hospital Support"
             text="Exclusively backed by SIMS Multispecial Hospital Nagaon for specialist support and advanced diagnostics."
@@ -94,9 +108,14 @@ const About = () => {
         {/* Coverage Section */}
         <section className="bg-background-light rounded-[40px] p-8 md:p-16 border border-border overflow-hidden relative">
           <div className="relative z-10">
-            <h2 className="text-3xl font-bold mb-12 text-center text-text-dark">Our Geographical Presence</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center text-text-dark font-display">Our Geographical Presence</h2>
             <div className="grid md:grid-cols-2 gap-12">
-              <div className="bg-white p-8 rounded-3xl shadow-sm space-y-4">
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="bg-white p-8 rounded-3xl shadow-sm space-y-4"
+              >
                 <h3 className="text-2xl font-bold text-primary flex items-center gap-2">
                   <MapPin size={24} /> Nagaon Hub
                 </h3>
@@ -104,12 +123,17 @@ const About = () => {
                   Our core operations are centered in Nagaon, Assam. We cover all major wards and nearby rural areas 
                   ensuring that professional medical help is just a phone call away for local residents.
                 </p>
-                <div className="text-sm font-bold text-text-dark pt-2">
+                <div className="text-sm font-bold text-text-dark pt-2 uppercase tracking-wide">
                   Ward No. 1, Nagaon, Assam
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-white p-8 rounded-3xl shadow-sm space-y-4">
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="bg-white p-8 rounded-3xl shadow-sm space-y-4"
+              >
                 <h3 className="text-2xl font-bold text-primary flex items-center gap-2">
                   <Globe className="text-primary" size={24} /> Beyond Nagaon
                 </h3>
@@ -117,22 +141,30 @@ const About = () => {
                   While Nagaon is our headquarters, we extend our network support to patients seeking treatment 
                   in cities like Delhi, Mumbai, Chennai, and Hyderabad by providing trained attendants and coordinators.
                 </p>
-              </div>
+                <div className="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full w-fit font-bold uppercase">Network Support</div>
+              </motion.div>
             </div>
           </div>
         </section>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 // Helper components
-const ValueCard = ({ icon, title, text }) => (
-  <div className="p-8 bg-white border border-border rounded-3xl hover:border-primary/20 hover:shadow-lg transition-all">
+const ValueCard = ({ icon, title, text, index }) => (
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay: index * 0.1 }}
+    whileHover={{ y: -5 }}
+    className="p-8 bg-white border border-border rounded-3xl hover:border-primary/20 hover:shadow-lg transition-all"
+  >
     <div className="mb-6">{icon}</div>
     <h3 className="text-xl font-bold text-text-dark mb-4">{title}</h3>
     <p className="text-text-muted text-sm leading-relaxed">{text}</p>
-  </div>
+  </motion.div>
 );
 
 const Globe = ({ size, className }) => (

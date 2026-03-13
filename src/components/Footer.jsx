@@ -13,13 +13,19 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Column 1: Brand & About */}
           <div className="space-y-6">
-            <img src={logo} alt="Spondon Logo" className="h-10 w-auto" />
-            <p className="text-text-dark font-semibold text-sm">
-              A Unit of SIMS Multispecial Hospital
-            </p>
-            <p className="text-text-muted text-sm leading-relaxed max-w-xs">
-              Professional doorstep healthcare in Nagaon, Assam. We bring quality medical care right to your home.
-            </p>
+            <Link to="/" className="flex items-center gap-3 mb-8 group">
+              <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:scale-110 transition-transform">
+                <path d="M21 38C21 38 4 27 4 14.5C4 8.7 8.7 4 14.5 4C17.5 4 20.2 5.3 21 6.5C21.8 5.3 24.5 4 27.5 4C33.3 4 38 8.7 38 14.5C38 27 21 38 21 38Z" fill="#e53e3e"/>
+                <path d="M6 21 L11 21 L13.5 15 L17 27 L20.5 18 L23 23 L26 21 L36 21" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                <rect x="19" y="5" width="4" height="13" rx="2" fill="white" opacity="0.9"/>
+                <rect x="13.5" y="10.5" width="15" height="4" rx="2" fill="white" opacity="0.9"/>
+              </svg>
+              <div className="flex flex-col leading-none">
+                <span className="font-display font-black text-2xl text-primary tracking-tighter">SPONDON</span>
+                <span className="text-[10px] font-bold text-text-muted uppercase tracking-widest">Doorstep Healthcare</span>
+                <span className="text-[9px] font-medium text-text-muted/60 mt-1">A Unit of SIMS Multispecial Hospital</span>
+              </div>
+            </Link>
             <div className="flex gap-4">
               <SocialIcon icon={<Facebook size={20} />} href="https://facebook.com" />
               <SocialIcon icon={<Instagram size={20} />} href="https://instagram.com" />

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  User, Calendar as CalendarIcon, Clock, CheckCircle2,
+  User, Calendar as CalendarIcon, Clock, CheckCircle,
   ArrowRight, ArrowLeft, Search, Star, MapPin,
   Sparkles, LayoutDashboard, Stethoscope, Video, 
   Baby, Activity, Beaker, Pill
@@ -44,7 +44,7 @@ const Appointments = () => {
     { title: 'Service', icon: <Stethoscope /> },
     { title: 'Schedule', icon: <CalendarIcon /> },
     { title: 'Details', icon: <User /> },
-    { title: 'Confirm', icon: <CheckCircle2 /> }
+    { title: 'Confirm', icon: <CheckCircle /> }
   ];
 
   const handleSubmit = () => {
@@ -73,7 +73,7 @@ const Appointments = () => {
                   }}
                   className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold transition-all"
                 >
-                  {step > idx + 1 ? <CheckCircle2 size={20} /> : idx + 1}
+                  {step > idx + 1 ? <CheckCircle size={20} /> : idx + 1}
                 </motion.div>
                 <span className={`text-[10px] font-bold uppercase tracking-wider ${step >= idx + 1 ? 'text-primary' : 'text-text-muted'}`}>
                   {s.title}
@@ -274,7 +274,7 @@ const Appointments = () => {
                 className="p-12 md:p-20 flex flex-col items-center justify-center text-center"
               >
                 <div className="w-24 h-24 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-8">
-                  <CheckCircle2 size={60} />
+                  <CheckCircle size={60} />
                 </div>
 
                 <h2 className="text-4xl font-bold text-text-dark mb-4 font-display">Request Submitted!</h2>

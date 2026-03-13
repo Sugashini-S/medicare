@@ -12,10 +12,15 @@ const Home = () => {
   const [showPromo, setShowPromo] = useState(true);
 
   return (
-    <div className="flex flex-col min-h-screen pt-20">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="flex flex-col min-h-screen pt-20"
+    >
       {/* Hero Section */}
-      <section className="relative bg-white overflow-hidden py-12 md:py-24">
-        <div className="container-custom grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="relative bg-white overflow-hidden py-12 md:py-24 px-4 md:px-8 lg:px-16 mt-6 md:mt-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -27,7 +32,7 @@ const Home = () => {
               🏥 Doorstep Healthcare — Nagaon, Assam
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight font-display">
               Healthcare That <br />
               Comes <span className="text-primary italic">To You</span>
             </h1>
@@ -38,13 +43,17 @@ const Home = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Link to="/appointments" className="btn-primary flex items-center justify-center gap-2 group">
-                Book a Service
-                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-              </Link>
-              <Link to="/register" className="btn-outline flex items-center justify-center gap-2">
-                Register — ₹100/year
-              </Link>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
+                <Link to="/appointments" className="btn-primary w-full flex items-center justify-center gap-2 group">
+                  Book a Service
+                  <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
+                <Link to="/register" className="btn-outline w-full flex items-center justify-center gap-2">
+                  Register — ₹100/year
+                </Link>
+              </motion.div>
             </div>
 
             <div className="flex flex-wrap gap-6 pt-4">
@@ -62,9 +71,10 @@ const Home = () => {
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
               <img 
-                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800&h=1000" 
-                alt="Nurse home visit" 
-                className="w-full h-full object-cover"
+                src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=600&q=80" 
+                alt="Home healthcare" 
+                className="w-full h-full object-cover rounded-2xl"
+                onError={(e) => { e.target.style.display='none' }}
               />
             </div>
             {/* Soft teal gradient background */}
@@ -125,42 +135,48 @@ const Home = () => {
       </AnimatePresence>
 
       {/* Services Section */}
-      <section className="bg-background-light section-padding">
-        <div className="container-custom">
+      <section className="bg-background-light py-16 md:py-24 px-4 md:px-8 lg:px-16">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Our Services</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 font-display">Our Services</h2>
             <p className="text-text-muted max-w-2xl mx-auto">
               Comprehensive home healthcare tailored to your needs
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <ServiceCard 
+              index={0}
               icon={<Stethoscope className="text-primary" size={32} />}
               title="Doctor Visit at Home"
               description="Our doctors come to your home for consultation and treatment"
             />
             <ServiceCard 
+              index={1}
               icon={<Video className="text-primary" size={32} />}
               title="Telemedicine Consultation"
               description="Video consultation with doctors from the comfort of your home"
             />
             <ServiceCard 
+              index={2}
               icon={<Activity className="text-primary" size={32} />}
               title="Nursing Care"
               description="24×7 trained nursing services at your doorstep"
             />
             <ServiceCard 
+              index={3}
               icon={<Beaker className="text-primary" size={32} />}
               title="Home Lab Collection"
               description="Lab technicians collect samples at home, reports delivered to you"
             />
             <ServiceCard 
+              index={4}
               icon={<Baby className="text-primary" size={32} />}
               title="Mother & Child Care"
               description="Comprehensive postpartum and newborn care at home"
             />
             <ServiceCard 
+              index={5}
               icon={<ShoppingBag className="text-primary" size={32} />}
               title="Doorstep Pharmacy"
               description="Medicines and medical equipment delivered to your door"
@@ -176,27 +192,31 @@ const Home = () => {
       </section>
 
       {/* How It Works */}
-      <section className="section-padding bg-white">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-16">How It Works</h2>
+      <section className="py-16 md:py-24 px-4 md:px-8 lg:px-16 bg-white">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-bold mb-16 font-display">How It Works</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <StepItem 
+              index={0}
               number="1"
               title="Register"
               description="Fill out the form with your name, address, email and mobile number"
             />
             <StepItem 
+              index={1}
               number="2"
               title="Provide Patient Information"
               description="Enter the patient's name, age, gender, medical condition, required care and location"
             />
             <StepItem 
+              index={2}
               number="3"
               title="Care Coordinator Review"
               description="Our Care Coordinator reviews needs and creates a personalized care plan"
             />
             <StepItem 
+              index={3}
               number="4"
               title="Schedule Care"
               description="We schedule a qualified healthcare professional to visit your home"
@@ -206,13 +226,13 @@ const Home = () => {
       </section>
 
       {/* Service Hours Notice */}
-      <section className="pb-24 px-4 sm:px-6">
-        <div className="container-custom">
+      <section className="pb-24 px-4 md:px-8 lg:px-16">
+        <div className="max-w-7xl mx-auto">
           <div className="bg-primary/5 border-2 border-primary/20 rounded-[32px] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="space-y-4">
               <div className="flex items-center gap-3 text-primary">
                 <Clock size={32} />
-                <h3 className="text-2xl font-bold">Service Hours Notice</h3>
+                <h3 className="text-2xl font-bold uppercase tracking-tight">Service Hours Notice</h3>
               </div>
               <p className="text-text-body font-medium max-w-xl">
                 Our services are available from <span className="font-bold underline decoration-primary decoration-2">8AM to 8PM</span> only. 
@@ -230,15 +250,20 @@ const Home = () => {
       </section>
 
       {/* City Coverage */}
-      <section className="section-padding bg-background-light">
-        <div className="container-custom">
+      <section className="py-16 md:py-24 px-4 md:px-8 lg:px-16 bg-background-light">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Where We Serve</h2>
+            <h2 className="text-3xl font-bold mb-4 font-display">Where We Serve</h2>
             <p className="text-text-muted italic">Professional healthcare in Nagaon and beyond</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="p-8 bg-white rounded-3xl shadow-lg border-2 border-primary/10">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="p-8 bg-white rounded-3xl shadow-lg border-2 border-primary/10"
+            >
               <h3 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2">
                 <MapPin /> Nagaon, Assam
               </h3>
@@ -248,9 +273,14 @@ const Home = () => {
               <div className="flex items-center gap-2 text-text-muted font-bold text-sm">
                 <Check className="text-primary" /> Multi-speciality SIMS Support
               </div>
-            </div>
+            </motion.div>
 
-            <div className="space-y-4">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-4"
+            >
               <div className="p-6 bg-white/60 rounded-2xl flex justify-between items-center border border-border">
                 <span className="font-bold">Other Locations Covered</span>
                 <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full font-bold">Delhi, Mumbai, Chennai, Hyderabad</span>
@@ -260,11 +290,11 @@ const Home = () => {
                   <span className="font-bold text-text-dark">Note:</span> Patients seeking treatment outside Assam will be provided with trained attendants.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 };
 
@@ -276,8 +306,12 @@ const TrustBadge = ({ icon, text }) => (
   </div>
 );
 
-const ServiceCard = ({ icon, title, description }) => (
+const ServiceCard = ({ icon, title, description, index }) => (
   <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay: index * 0.1, duration: 0.4 }}
     whileHover={{ y: -5 }}
     className="bg-white p-8 rounded-2xl shadow-lg border border-border hover:border-primary/20 transition-all duration-300"
   >
@@ -287,15 +321,22 @@ const ServiceCard = ({ icon, title, description }) => (
   </motion.div>
 );
 
-const StepItem = ({ number, title, description }) => (
-  <div className="relative space-y-4">
+const StepItem = ({ number, title, description, index }) => (
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay: index * 0.1, duration: 0.4 }}
+    className="relative space-y-4"
+  >
     <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto shadow-lg shadow-primary/20">
       {number}
     </div>
     <h3 className="text-xl font-bold text-text-dark">{title}</h3>
     <p className="text-text-muted text-sm px-4">{description}</p>
-  </div>
+  </motion.div>
 );
 
 export default Home;
+
 
