@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Stethoscope, Users, Award, ShieldCheck, 
-  CheckCircle, Video, Activity 
+import {
+  Stethoscope, Users, Award, ShieldCheck,
+  CheckCircle, Video, Activity
 } from 'lucide-react';
 
 const Doctors = () => {
@@ -34,14 +34,14 @@ const Doctors = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-bold text-sm mb-4"
           >
             Registered Medical Professionals
           </motion.div>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -50,16 +50,18 @@ const Doctors = () => {
             Connect with Our <br /> <span className="text-primary italic">Medical Experts</span>
           </motion.h1>
           <p className="text-text-body text-lg leading-relaxed mb-8">
-            Spondon Healthcare is supported by a panel of expert doctors from **SIMS Multispecial Hospital, Nagaon**. 
+            Spondon Healthcare is supported by a panel of expert doctors from **SIMS Multispecial Hospital, Nagaon**.
             All our professionals are registered with the National Medical Commission (NMC).
           </p>
-          <img 
-            src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1200&q=80" 
-            alt="Indian doctors and nurses team" 
-            className="w-full h-64 object-cover rounded-2xl mb-8 opacity-80 shadow-lg" 
+          <img
+            src="https://images.pexels.com/photos/7108249/pexels-photo-7108249.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Indian doctors and nurses team"
+
+            className="w-full h-80 object-cover rounded-2xl mb-8"
+
             onError={(e) => { e.target.style.display = 'none' }}
             loading="lazy"
-            /* TODO: Replace with Indian healthcare photo when available */
+          /* TODO: Replace with Indian healthcare photo when available */
           />
         </div>
 
@@ -90,8 +92,8 @@ const Doctors = () => {
             <div>
               <h2 className="text-3xl font-bold mb-6 font-display">SIMS Multispecial Hospital Support</h2>
               <p className="text-text-body leading-relaxed mb-8">
-                Every doorstep visit is backed by the clinical excellence of SIMS Hospital. 
-                In case of complex diagnosis or emergency needs, patients are directly 
+                Every doorstep visit is backed by the clinical excellence of SIMS Hospital.
+                In case of complex diagnosis or emergency needs, patients are directly
                 transitioned to our hospital facility for advanced treatment.
               </p>
               <ul className="space-y-4">

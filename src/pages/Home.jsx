@@ -72,11 +72,11 @@ const Home = () => {
             className="relative mt-12 lg:mt-0"
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-              <img 
-                src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&q=80" 
-                alt="Indian female doctor smiling" 
+              <img
+                src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&q=80"
+                alt="Indian female doctor smiling"
                 className="w-full h-full object-cover rounded-2xl"
-                onError={(e) => { e.target.style.display='none' }}
+                onError={(e) => { e.target.style.display = 'none' }}
                 loading="lazy"
               />
             </div>
@@ -150,15 +150,15 @@ const Home = () => {
               icon={<Stethoscope className="text-primary" size={32} />}
               title="Doctor Visit at Home"
               description="Our doctors come to your home for consultation and treatment"
-              image="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=400&q=80"
+              image="https://images.unsplash.com/photo-1758691462321-9b6c98c40f7e?w=500&q=80"
             />
             <ServiceCard
               index={1}
               icon={<Video className="text-primary" size={32} />}
               title="Telemedicine Consultation"
               description="Video consultation with doctors from the comfort of your home"
-              image="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80"
-              /* TODO: Replace with Indian healthcare photo when available */
+              image="https://images.pexels.com/photos/7195308/pexels-photo-7195308.jpeg?auto=compress&cs=tinysrgb&w=500"
+            /* TODO: Replace with Indian healthcare photo when available */
             />
             <ServiceCard
               index={2}
@@ -172,16 +172,17 @@ const Home = () => {
               icon={<Beaker className="text-primary" size={32} />}
               title="Home Lab Collection"
               description="Lab technicians collect samples at home, reports delivered to you"
-              image="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&q=80"
-              /* TODO: Replace with Indian healthcare photo when available */
+              image="https://images.pexels.com/photos/6285370/pexels-photo-6285370.jpeg?auto=compress&cs=tinysrgb&w=500"
+            /* TODO: Replace with Indian healthcare photo when available */
             />
             <ServiceCard
               index={4}
               icon={<Baby className="text-primary" size={32} />}
+
               title="Mother & Child Care"
               description="Comprehensive postpartum and newborn care at home"
-              image="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=400&q=80"
-              /* TODO: Replace with Indian healthcare photo when available */
+              image="https://images.pexels.com/photos/1586257/pexels-photo-1586257.jpeg?auto=compress&cs=tinysrgb&w=500"
+            /* TODO: Replace with Indian healthcare photo when available */
             />
             <ServiceCard
               index={5}
@@ -189,7 +190,7 @@ const Home = () => {
               title="Doorstep Pharmacy"
               description="Medicines and medical equipment delivered to your door"
               image="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&q=80"
-              /* TODO: Replace with Indian healthcare photo when available */
+
             />
           </div>
 
@@ -265,7 +266,7 @@ const Home = () => {
                 className="w-full h-full object-cover rounded-2xl shadow-lg"
                 onError={(e) => { e.target.style.display = 'none' }}
                 loading="lazy"
-                /* TODO: Replace with Indian healthcare photo when available */
+              /* TODO: Replace with Indian healthcare photo when available */
               />
             </motion.div>
           </div>

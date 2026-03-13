@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Stethoscope, Video, Activity, Beaker, 
+import {
+  Stethoscope, Video, Activity, Beaker,
   Baby, ShoppingBag, Clock, ShieldCheck,
   CheckCircle, ArrowRight, Truck, Users
 } from 'lucide-react';
@@ -15,7 +15,7 @@ const Services = () => {
       title: "Doctor Visit at Home",
       description: "Our qualified doctors come to your home for consultation, diagnosis, and treatment planning, saving you the stress of travel.",
       features: ["Physical examination", "Prescription management", "Post-hospitalization follow-up"],
-      image: "https://images.unsplash.com/photo-1643297654416-05795d62e39c?w=500&q=80"
+      image: "https://images.pexels.com/photos/7653120/pexels-photo-7653120.jpeg?auto=compress&cs=tinysrgb&w=500"
     },
     {
       id: 2,
@@ -32,7 +32,7 @@ const Services = () => {
       title: "Nursing Care (24x7)",
       description: "Experienced nurses available for 24x7 care, including injections, wound dressing, and critical monitoring at home.",
       features: ["24x7 Post-operative care", "Geriatric care", "Infusion services"],
-      image: "https://images.unsplash.com/photo-1632833239869-a37e3a5806d2?w=500&q=80"
+      image: "https://images.pexels.com/photos/6129688/pexels-photo-6129688.jpeg?auto=compress&cs=tinysrgb&w=500"
     },
     {
       id: 4,
@@ -40,7 +40,7 @@ const Services = () => {
       title: "Physiotherapy & Rehabilitation",
       description: "Professional physiotherapists provide massage and exercises to help you recover mobility and strength at home.",
       features: ["Post-stroke rehab", "Joint pain relief", "Sports injury recovery"],
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80"
+      image: "https://images.pexels.com/photos/5793697/pexels-photo-5793697.jpeg?auto=compress&cs=tinysrgb&w=500"
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ const Services = () => {
       title: "Bedside Caregiver",
       description: "Trained attendants to help bedridden or elderly patients with daily activities and basic medical needs.",
       features: ["Personal hygiene help", "Medication reminders", "Mobility support"],
-      image: "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=500&q=80"
+      image: "https://images.pexels.com/photos/6010792/pexels-photo-6010792.jpeg?auto=compress&cs=tinysrgb&w=500"
     },
     {
       id: 6,
@@ -64,7 +64,7 @@ const Services = () => {
       title: "Home Sample Collection",
       description: "Professional lab technicians visit your home to collect samples for blood tests and investigations.",
       features: ["Blood & urine tests", "NMC verified labs", "Digital reports"],
-      image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=500&q=80"
+      image: "https://images.pexels.com/photos/7659683/pexels-photo-7659683.jpeg?auto=compress&cs=tinysrgb&w=500"
     },
     {
       id: 8,
@@ -72,7 +72,7 @@ const Services = () => {
       title: "Doorstep Pharmacy",
       description: "Order medicines and medical equipment. We ensure quick delivery to your doorstep in Nagaon.",
       features: ["Prescription medicines", "Healthcare essentials", "Equipment rental"],
-      image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=500&q=80"
+      image: "https://images.pexels.com/photos/5910949/pexels-photo-5910949.jpeg?auto=compress&cs=tinysrgb&w=500"
     },
     {
       id: 9,
@@ -80,7 +80,7 @@ const Services = () => {
       title: "Ambulance",
       description: "Emergency ambulance services for critical patient transport to SIMS hospital or other facilities.",
       features: ["24x7 Emergency line", "Oxygen support", "Trained paramedics"],
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&q=80"
+      image: "https://images.pexels.com/photos/5364345/pexels-photo-5364345.jpeg?auto=compress&cs=tinysrgb&w=500"
     }
   ];
 
@@ -94,14 +94,14 @@ const Services = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-bold text-sm mb-4"
           >
             A Unit of SIMS Multispecial Hospital
           </motion.div>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -110,7 +110,7 @@ const Services = () => {
             Our Doorstep <span className="text-primary italic">Services</span>
           </motion.h1>
           <p className="text-text-body text-lg max-w-2xl mx-auto leading-relaxed">
-            Professional healthcare delivered to your door. We combine medical expertise 
+            Professional healthcare delivered to your door. We combine medical expertise
             with the convenience of your home environment.
           </p>
         </div>
@@ -128,9 +128,9 @@ const Services = () => {
               className="group bg-background-light rounded-3xl border border-transparent hover:border-primary/20 hover:bg-white hover:shadow-xl transition-all duration-300 overflow-hidden"
             >
               <div className="h-52 overflow-hidden">
-                <img 
-                  src={service.image} 
-                  alt={service.title} 
+                <img
+                  src={service.image}
+                  alt={service.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   onError={(e) => { e.target.style.display = 'none' }}
                   loading="lazy"
@@ -174,15 +174,15 @@ const Services = () => {
                 <h2 className="text-3xl md:text-4xl font-bold font-display uppercase tracking-tight">Standard Timing</h2>
               </div>
               <p className="text-white/80 text-lg leading-relaxed">
-                Our doorstep services are available from 8:00 AM to 8:00 PM daily. 
-                Please note that we are not an emergency service. For critical emergencies, 
+                Our doorstep services are available from 8:00 AM to 8:00 PM daily.
+                Please note that we are not an emergency service. For critical emergencies,
                 please visit SIMS Multispecial Hospital immediately.
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
-                <motion.a 
+                <motion.a
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  href="tel:+919435099908" 
+                  href="tel:+919435099908"
                   className="flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-xl font-bold hover:bg-secondary hover:text-white transition-all shadow-lg"
                 >
                   Contact Support
