@@ -21,7 +21,7 @@ const Register = () => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [timer, setTimer] = useState(30);
   const [isVerifying, setIsVerifying] = useState(false);
-  const [otpError, setOtpError] = useState(false);
+  const [otpError] = useState(false);
 
   // OTP Timer logic
   useEffect(() => {
