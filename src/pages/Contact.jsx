@@ -36,8 +36,13 @@ const Contact = () => {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-12 items-start">
-          {/* Contact Details */}
           <div className="lg:col-span-5 space-y-8">
+            <img 
+              src="https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=600&q=80" 
+              alt="Care Coordinator" 
+              className="w-full h-56 object-cover rounded-2xl shadow-md"
+              onError={(e) => { e.target.style.display = 'none' }}
+            />
             <div className="bg-background-light p-8 rounded-3xl space-y-8">
               <ContactMethod 
                 icon={<Phone className="text-primary" />}

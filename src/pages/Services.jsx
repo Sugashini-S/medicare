@@ -14,42 +14,48 @@ const Services = () => {
       icon: <Stethoscope size={32} />,
       title: "Doctor Visit at Home",
       description: "Our qualified doctors come to your home for consultation, diagnosis, and treatment planning, saving you the stress of travel.",
-      features: ["Physical examination", "Prescription management", "Post-hospitalization follow-up"]
+      features: ["Physical examination", "Prescription management", "Post-hospitalization follow-up"],
+      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&q=80"
     },
     {
       id: 2,
       icon: <Video size={32} />,
       title: "Telemedicine Consultation",
       description: "Connect with specialist doctors via video call from your home. Ideal for follow-ups and non-emergency consultations.",
-      features: ["Specialist consultation", "E-prescriptions", "Instant medical advice"]
+      features: ["Specialist consultation", "E-prescriptions", "Instant medical advice"],
+      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&q=80"
     },
     {
       id: 3,
       icon: <Activity size={32} />,
       title: "Nursing Care",
       description: "Experienced nurses available for short-term and long-term care, including injections, wound dressing, and monitoring.",
-      features: ["Post-operative care", "Geriatric care", "Infusion services"]
+      features: ["Post-operative care", "Geriatric care", "Infusion services"],
+      image: "https://images.unsplash.com/photo-1584515933487-779824d29309?w=500&q=80"
     },
     {
       id: 4,
       icon: <Beaker size={32} />,
       title: "Home Lab Collection",
       description: "Professional lab technicians visit your home to collect samples. Reports are delivered digitally or physically.",
-      features: ["Blood & urine tests", "Full body checkup", "NMC verified labs"]
+      features: ["Blood & urine tests", "Full body checkup", "NMC verified labs"],
+      image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=500&q=80"
     },
     {
       id: 5,
       icon: <Baby size={32} />,
       title: "Mother & Child Care",
       description: "Comprehensive care for new mothers and babies, including lactation support and infant health monitoring.",
-      features: ["Postpartum support", "Neonatal care", "Vaccination guidance"]
+      features: ["Postpartum support", "Neonatal care", "Vaccination guidance"],
+      image: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=500&q=80"
     },
     {
       id: 6,
       icon: <ShoppingBag size={32} />,
       title: "Doorstep Pharmacy",
       description: "Order medicines and medical equipment. We ensure quick delivery to your doorstep in Nagaon.",
-      features: ["Prescription medicines", "Healthcare essentials", "Equipment rental"]
+      features: ["Prescription medicines", "Healthcare essentials", "Equipment rental"],
+      image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=500&q=80"
     }
   ];
 
@@ -94,31 +100,41 @@ const Services = () => {
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -5 }}
-              className="group bg-background-light p-8 rounded-3xl border border-transparent hover:border-primary/20 hover:bg-white hover:shadow-xl transition-all duration-300"
+              className="group bg-background-light rounded-3xl border border-transparent hover:border-primary/20 hover:bg-white hover:shadow-xl transition-all duration-300 overflow-hidden"
             >
-              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-primary shadow-sm mb-6 group-hover:scale-110 transition-transform duration-300">
-                {service.icon}
+              <div className="h-52 overflow-hidden">
+                <img 
+                  src={service.image} 
+                  alt={service.title} 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  onError={(e) => { e.target.style.display = 'none' }}
+                />
               </div>
-              <h3 className="text-2xl font-bold text-text-dark mb-4">
-                {service.title}
-              </h3>
-              <p className="text-text-muted text-sm leading-relaxed mb-6">
-                {service.description}
-              </p>
-              <ul className="space-y-3 mb-8">
-                {service.features.map((feature, fidx) => (
-                  <li key={fidx} className="flex items-center gap-2 text-sm text-text-body font-medium">
-                    <CheckCircle size={16} className="text-primary shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <motion.div whileHover={{ x: 5 }} transition={{ type: 'spring', stiffness: 400 }}>
-                <Link to="/appointments" className="flex items-center gap-2 text-primary font-bold text-sm group/btn">
-                  Book This Service
-                  <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-                </Link>
-              </motion.div>
+              <div className="p-8">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-primary shadow-sm mb-6 group-hover:scale-110 transition-transform duration-300">
+                  {service.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-text-dark mb-4">
+                  {service.title}
+                </h3>
+                <p className="text-text-muted text-sm leading-relaxed mb-6">
+                  {service.description}
+                </p>
+                <ul className="space-y-3 mb-8">
+                  {service.features.map((feature, fidx) => (
+                    <li key={fidx} className="flex items-center gap-2 text-sm text-text-body font-medium">
+                      <CheckCircle size={16} className="text-primary shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <motion.div whileHover={{ x: 5 }} transition={{ type: 'spring', stiffness: 400 }}>
+                  <Link to="/appointments" className="flex items-center gap-2 text-primary font-bold text-sm group/btn">
+                    Book This Service
+                    <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                  </Link>
+                </motion.div>
+              </div>
             </motion.div>
           ))}
         </div>

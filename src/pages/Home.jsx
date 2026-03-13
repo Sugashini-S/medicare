@@ -148,36 +148,42 @@ const Home = () => {
               icon={<Stethoscope className="text-primary" size={32} />}
               title="Doctor Visit at Home"
               description="Our doctors come to your home for consultation and treatment"
+              image="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"
             />
             <ServiceCard 
               index={1}
               icon={<Video className="text-primary" size={32} />}
               title="Telemedicine Consultation"
               description="Video consultation with doctors from the comfort of your home"
+              image="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=80"
             />
             <ServiceCard 
               index={2}
               icon={<Activity className="text-primary" size={32} />}
               title="Nursing Care"
               description="24×7 trained nursing services at your doorstep"
+              image="https://images.unsplash.com/photo-1584515933487-779824d29309?w=400&q=80"
             />
             <ServiceCard 
               index={3}
               icon={<Beaker className="text-primary" size={32} />}
               title="Home Lab Collection"
               description="Lab technicians collect samples at home, reports delivered to you"
+              image="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&q=80"
             />
             <ServiceCard 
               index={4}
               icon={<Baby className="text-primary" size={32} />}
               title="Mother & Child Care"
               description="Comprehensive postpartum and newborn care at home"
+              image="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=400&q=80"
             />
             <ServiceCard 
               index={5}
               icon={<ShoppingBag className="text-primary" size={32} />}
               title="Doorstep Pharmacy"
               description="Medicines and medical equipment delivered to your door"
+              image="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&q=80"
             />
           </div>
 
@@ -214,31 +220,46 @@ const Home = () => {
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-16 font-display">How It Works</h2>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <StepItem 
-              index={0}
-              number="1"
-              title="Register"
-              description="Fill out the form with your name, address, email and mobile number"
-            />
-            <StepItem 
-              index={1}
-              number="2"
-              title="Provide Patient Information"
-              description="Enter the patient's name, age, gender, medical condition, required care and location"
-            />
-            <StepItem 
-              index={2}
-              number="3"
-              title="Care Coordinator Review"
-              description="Our Care Coordinator reviews needs and creates a personalized care plan"
-            />
-            <StepItem 
-              index={3}
-              number="4"
-              title="Schedule Care"
-              description="We schedule a qualified healthcare professional to visit your home"
-            />
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <StepItem 
+                index={0}
+                number="1"
+                title="Register"
+                description="Fill out the form with your name, address, email and mobile number"
+              />
+              <StepItem 
+                index={1}
+                number="2"
+                title="Provide Patient Information"
+                description="Enter the patient's name, age, gender, medical condition, required care and location"
+              />
+              <StepItem 
+                index={2}
+                number="3"
+                title="Care Coordinator Review"
+                description="Our Care Coordinator reviews needs and creates a personalized care plan"
+              />
+              <StepItem 
+                index={3}
+                number="4"
+                title="Schedule Care"
+                description="We schedule a qualified healthcare professional to visit your home"
+              />
+            </div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative h-full min-h-[400px]"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=600&q=80"
+                alt="Doctor with patient at home"
+                className="w-full h-full object-cover rounded-2xl shadow-lg font-bold" 
+                onError={(e) => { e.target.style.display = 'none' }}
+              />
+            </motion.div>
           </div>
         </div>
       </section>
@@ -324,18 +345,30 @@ const TrustBadge = ({ icon, text }) => (
   </div>
 );
 
-const ServiceCard = ({ icon, title, description, index }) => (
+const ServiceCard = ({ icon, title, description, image, index }) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ delay: index * 0.1, duration: 0.4 }}
     whileHover={{ y: -5 }}
-    className="bg-white p-8 rounded-2xl shadow-lg border border-border hover:border-primary/20 transition-all duration-300"
+    className="group bg-white rounded-2xl shadow-lg border border-border hover:border-primary/20 transition-all duration-300 overflow-hidden"
   >
-    <div className="mb-6">{icon}</div>
-    <h3 className="text-xl font-bold text-text-dark mb-4">{title}</h3>
-    <p className="text-text-muted text-sm leading-relaxed">{description}</p>
+    {image && (
+      <div className="h-48 overflow-hidden">
+        <img 
+          src={image} 
+          alt={title} 
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          onError={(e) => { e.target.style.display = 'none' }}
+        />
+      </div>
+    )}
+    <div className="p-8">
+      <div className="mb-6">{icon}</div>
+      <h3 className="text-xl font-bold text-text-dark mb-4">{title}</h3>
+      <p className="text-text-muted text-sm leading-relaxed">{description}</p>
+    </div>
   </motion.div>
 );
 

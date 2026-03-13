@@ -62,10 +62,16 @@ const Doctors = () => {
           >
             Connect with Our <br /> <span className="text-primary italic">Medical Experts</span>
           </motion.h1>
-          <p className="text-text-body text-lg leading-relaxed">
+          <p className="text-text-body text-lg leading-relaxed mb-8">
             Spondon Healthcare is supported by a panel of expert doctors from **SIMS Multispecial Hospital, Nagaon**. 
             All our professionals are registered with the National Medical Commission (NMC).
           </p>
+          <img 
+            src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=1200&q=80" 
+            alt="Doctors Team" 
+            className="w-full h-64 object-cover rounded-2xl mb-8 opacity-80 shadow-lg" 
+            onError={(e) => { e.target.style.display = 'none' }}
+          />
         </div>
 
         {/* Info Grid */}
