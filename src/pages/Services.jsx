@@ -20,8 +20,8 @@ const Services = () => {
     {
       id: 2,
       icon: <Video size={32} />,
-      title: "Telemedicine Consultation",
-      description: "Connect with specialist doctors via video call from your home. Ideal for follow-ups and non-emergency consultations.",
+      title: "OPD / Telemedicine Consultation",
+      description: "Access OPD services including diagnostics, radiology checks and doctor consultations from home. A Health Buddy sets up your video call with the doctor.",
       features: ["Specialist consultation", "E-prescriptions", "Instant medical advice"],
       image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&q=80"
       /* TODO: Replace with Indian healthcare photo when available */
@@ -62,16 +62,26 @@ const Services = () => {
       id: 7,
       icon: <Beaker size={32} />,
       title: "Home Sample Collection",
-      description: "Professional lab technicians visit your home to collect samples for blood tests and investigations.",
-      features: ["Blood & urine tests", "NMC verified labs", "Digital reports"],
+      description: "We collaborate with top certified labs. Our technicians collect samples at home including ECG, blood tests and RTPCR. Reports delivered digitally.",
+      features: [
+        "ECG at home with online doctor opinion",
+        "Lab sample collection at home",
+        "RTPCR tests at home"
+      ],
+      badge: "🏠 At Home Service",
       image: "https://images.pexels.com/photos/7659683/pexels-photo-7659683.jpeg?auto=compress&cs=tinysrgb&w=500"
     },
     {
       id: 8,
       icon: <ShoppingBag size={32} />,
       title: "Doorstep Pharmacy",
-      description: "Order medicines and medical equipment. We ensure quick delivery to your doorstep in Nagaon.",
-      features: ["Prescription medicines", "Healthcare essentials", "Equipment rental"],
+      description: "Get discounted pharmacy services at your doorstep. All medicines and medical equipment including urine bags, catheters, walkers and air mattresses delivered.",
+      features: [
+        "💊 Discounted medicines delivered home",
+        "🛏️ Urine bags, catheters, walkers, air mattress",
+        "Quick delivery across Nagaon"
+      ],
+      badge: "💰 Discounted Prices",
       image: "https://images.pexels.com/photos/5910949/pexels-photo-5910949.jpeg?auto=compress&cs=tinysrgb&w=500"
     },
     {
@@ -125,8 +135,13 @@ const Services = () => {
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -5 }}
-              className="group bg-background-light rounded-3xl border border-transparent hover:border-primary/20 hover:bg-white hover:shadow-xl transition-all duration-300 overflow-hidden"
+              className="group relative bg-background-light rounded-3xl border border-transparent hover:border-primary/20 hover:bg-white hover:shadow-xl transition-all duration-300 overflow-hidden"
             >
+              {service.badge && (
+                <div className="absolute top-4 right-4 z-10 bg-teal-600 px-3 py-1 rounded-full text-white text-xs font-bold shadow-md">
+                  {service.badge}
+                </div>
+              )}
               <div className="h-52 overflow-hidden">
                 <img
                   src={service.image}
